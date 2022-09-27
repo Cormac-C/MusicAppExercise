@@ -1,3 +1,17 @@
 .example-text {
-    color: aqua;
+  color: aqua;
+}
+
+.mainBody {
+  height: 100vh;
+  display: flex;
+}
+.leftCol {
+  width: 25%;
+  background-color: beige;
+}
+
+.rightCol {
+  width: 75%;
+  background-color: darkgrey;
 }
