@@ -1,33 +1,33 @@
 .body {
-  height: 100vh;
-  width: 100vw;
+  box-sizing: border-box;
+  max-height: 100vh;
+  max-width: 100vw;
   margin: 0px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 }
 
 #footer {
   height: 5vh;
 }
 
-.mainBody {
-  height: 95vh;
-  display: flex;
-}
-.leftCol {
-  width: 25%;
+.menu {
   padding: 20px;
-  background-color: beige;
+  background-color: aliceblue;
+  box-shadow: 2px 2px 4px #9ab;
 }
-
 .rightCol {
-  width: 75%;
-  padding: 20px;
-  background-color: lightgray;
+  max-height: 100vh;
 }
 .topBar {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 4rem;
+}
+header {
+  padding: 20px;
+  box-shadow: 0 2px 4px #ddd;
+  flex: 1;
 }
 
 .topButtons {
@@ -44,12 +44,42 @@
 .links {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  bottom: 8%;
+}
+
+.content {
+  padding: 20px;
+  flex: 20;
+  overflow-y: scroll;
 }
 
 .gallery {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.imageLabel {
+  width: min-content;
+}
+
+/* CSS for Tablets */
+@media screen and (max-width: 768) {
+  .mainBody {
+    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+  .menu {
+    flex-direction: row;
+  }
+}
+
+/* CSS for Phones */
+@media screen and (max-width: 600px) {
+  .body {
+    overflow: auto;
+  }
+  .mainBody {
+    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
 }
