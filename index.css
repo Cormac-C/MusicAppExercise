@@ -48,6 +48,8 @@
   bottom: 8%;
 }
 
-.imageLabel .gallery {
-  display: grid;
+.gallery {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
