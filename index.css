@@ -5,6 +5,7 @@
   margin: 0px;
   display: grid;
   grid-template-columns: 1fr 3fr;
+  overflow-y: hidden;
 }
 
 #footer {
@@ -12,22 +13,31 @@
 }
 
 .menu {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
+  max-height: 100vh;
   background-color: aliceblue;
   box-shadow: 2px 2px 4px #9ab;
 }
 .rightCol {
+  display: flex;
+  flex-direction: column;
   max-height: 100vh;
+  overflow-y: hidden;
 }
 .topBar {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+.spacer {
+  flex: 1
+}
 header {
   padding: 20px;
+  background-color: white;
   box-shadow: 0 2px 4px #ddd;
-  flex: 1;
 }
 
 .topButtons {
@@ -47,8 +57,9 @@ header {
 }
 
 .content {
-  padding: 20px;
-  flex: 20;
+  padding: 1rem;
+  padding-bottom: 4rem;
+  flex: 1;
   overflow-y: scroll;
 }
 
@@ -63,10 +74,13 @@ header {
 }
 
 /* CSS for Tablets */
-@media screen and (max-width: 768) {
-  .mainBody {
-    flex-direction: column;
+@media screen and (max-width: 768px) {
+  .body {
+    overflow-y: auto;
     grid-template-columns: 1fr;
+  }
+  .rightCol {
+    overflow-y: auto;
   }
   .menu {
     flex-direction: row;
@@ -75,11 +89,8 @@ header {
 
 /* CSS for Phones */
 @media screen and (max-width: 600px) {
-  .body {
-    overflow: auto;
-  }
-  .mainBody {
+  /* .mainBody {
     flex-direction: column;
     grid-template-columns: 1fr;
-  }
+  } */
 }
