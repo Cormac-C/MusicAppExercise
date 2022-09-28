@@ -39,6 +39,21 @@ header {
   background-color: white;
   box-shadow: 0 2px 4px #ddd;
 }
+footer {
+  position: fixed;
+  bottom: 0;
+  /* For centering the text */
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+footer > div {
+  width: max-content;
+  border: 1px solid rgb(121, 0, 0);
+  border-radius: 4px 4px 0 0;
+  padding: 4px;
+  background-color: aliceblue;
+}
 
 .topButtons {
   justify-content: flex-end;
