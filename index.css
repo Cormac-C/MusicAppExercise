@@ -31,7 +31,7 @@
   flex-direction: row;
   align-items: center;
 }
-.spacer {
+#spacer {
   flex: 1
 }
 header {
@@ -61,8 +61,6 @@ footer > div {
 
 .menuItem {
   display: flex;
-  margin-top: 10px;
-  margin-bottom: 10px;
   align-items: center;
 }
 
@@ -72,16 +70,21 @@ footer > div {
 }
 
 .content {
-  padding: 1rem;
-  padding-bottom: 4rem;
+  padding: 4rem;
+  padding-top: 1rem;
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .gallery {
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.imageLabel > img {
+  width: 120px;
+  height: 120px;
 }
 
 .imageLabel {
@@ -99,13 +102,26 @@ footer > div {
   }
   .menu {
     flex-direction: row;
+    justify-content: space-between;
+  }
+  #spacer {
+    flex: 0;
   }
 }
 
 /* CSS for Phones */
 @media screen and (max-width: 600px) {
-  /* .mainBody {
-    flex-direction: column;
-    grid-template-columns: 1fr;
-  } */
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .imageLabel > img {
+    width: 75px;
+    height: 75px;
+  }
+  .appTitle {
+    display: none;
+  }
+  .links {
+    display: none;
+  }
 }
