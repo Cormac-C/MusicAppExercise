@@ -87,7 +87,7 @@ footer > div {
   padding: 15px;
 }
 
-.imageLabel > img:hover {
+.imageLabel:hover > img {
   width: 160px;
   height: 160px;
   padding: 5px;
@@ -95,6 +95,15 @@ footer > div {
 
 .imageLabel {
   width: min-content;
+}
+
+.imageLabel .playButton {
+  display: none;
+}
+
+.imageLabel:hover .playButton {
+  display: block;
+  position: absolute;
 }
 
 /* CSS for Tablets */
