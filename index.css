@@ -32,7 +32,7 @@
   align-items: center;
 }
 #spacer {
-  flex: 1
+  flex: 1;
 }
 header {
   padding: 20px;
@@ -82,8 +82,15 @@ footer > div {
 }
 
 .imageLabel > img {
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
+  padding: 15px;
+}
+
+.imageLabel > img:hover {
+  width: 160px;
+  height: 160px;
+  padding: 5px;
 }
 
 .imageLabel {
@@ -117,7 +124,8 @@ footer > div {
     width: 75px;
     height: 75px;
   }
-  .appTitle, .links {
+  .appTitle,
+  .links {
     display: none;
   }
 }
