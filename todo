@@ -1,4 +1,5 @@
 Better breakpoints for tablet & mobile
+- In mobile view the breakpoints don't trigger when they should
 Hover states
 - images will be highlighted (e.g., changing the color or the size)
 - play icon will appear next to them

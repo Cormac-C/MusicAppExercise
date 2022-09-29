@@ -70,8 +70,7 @@ footer > div {
 }
 
 .content {
-  padding: 4rem;
-  padding-top: 1rem;
+  padding: 1rem 1rem 4rem 4rem;
   flex: 1;
   overflow-y: auto;
 }
@@ -79,12 +78,12 @@ footer > div {
 .gallery {
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 }
 
 .imageLabel > img {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
 }
 
 .imageLabel {
@@ -118,10 +117,12 @@ footer > div {
     width: 75px;
     height: 75px;
   }
-  .appTitle {
+  .appTitle, .links {
     display: none;
   }
-  .links {
+}
+@media screen and (max-width: 450px) {
+  .menuItem > h4 {
     display: none;
   }
 }
