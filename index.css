@@ -92,6 +92,7 @@ footer > div {
 .links {
   display: flex;
   flex-direction: column;
+  color: black;
 }
 
 .content {
