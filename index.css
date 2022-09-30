@@ -106,6 +106,7 @@ footer > div {
 
 .imageLabel {
   width: min-content;
+  position: relative;
 }
 
 .imageLabel .playButton {
