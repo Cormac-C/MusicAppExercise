@@ -1,18 +1,4 @@
-Better breakpoints for tablet & mobile
-- In mobile view the breakpoints don't trigger when they should
-Seems fine in Safari so I think this may be a chrome issue
-
-Hover states
-- images will be highlighted (e.g., changing the color or the size)
-Done
-- play icon will appear next to them
-Done
-Populate content (images, text, icons)
-Just need the album images and labels
 Better styling
 
 
 Image sources:
-https://www.freeiconspng.com/downloadimg/18904
-https://freeicons.io/search/icons?q=music&iuc=512509757
-

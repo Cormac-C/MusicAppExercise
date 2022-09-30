@@ -59,6 +59,7 @@ footer > div {
   border-radius: 4px 4px 0 0;
   padding: 4px;
   background-color: aliceblue;
+  cursor: pointer;
 }
 
 .topButtons {
@@ -73,6 +74,7 @@ footer > div {
   padding-right: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
+  cursor: pointer;
 }
 
 .topButtons > button:hover {
@@ -82,6 +84,7 @@ footer > div {
 .menuItem {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .menuItem > * {
@@ -111,6 +114,11 @@ footer > div {
   width: 140px;
   height: 140px;
   padding: 15px;
+  cursor: pointer;
+}
+.imageLabel > h5 {
+  font-size: 1rem;
+  margin: 0;
 }
 
 .imageLabel:hover > img {
