@@ -8,9 +8,9 @@ Signup page
   - Username (Required)
   - Password (maximum? 8 characters. allowed characters: letters [a-z] and digits [0-9]) (Required)
   - Personal information
-  - Name and Surname (Required)
-  - Email (will follow the format name@domain.extension) (Required)
-  - Date of birth (dd / mm / yyyy) (Required)
+    - Name and Surname (Required)
+    - Email (will follow the format name@domain.extension) (Required)
+    - Date of birth (dd / mm / yyyy) (Required)
   - Profile image (Optional)
   - I have read and accepted the Terms of Use (Required)
   - Save and delete buttons
@@ -69,3 +69,10 @@ Misc
 - The tablet and mobile versions will have to be fully functional
 - When logged in the message in the footer will close
 - If you are not logged in, a section with the latest song or album releases will be added in the right column. Each item in this section will have a countdown counter. 
+
+
+**************************
+### Ideas
+User data - cookies / Web storage
+Songs - JSON with references to MP3s
+Repeated Components (e.g. song tiles) - HTML template Web components OR JQuery shenanigans?
