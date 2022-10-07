@@ -23,6 +23,11 @@ Updated header
 - Login/signup if the user is not logged in
 - User's profile image if the user is logged in
   - Clickable dropdown with options (account, profile, logout)
+  - Logout confirmation modal
+- a song search engine (functional)
+  - Actually returns a list of songs
+  - Button to start playing it
+  - Like button for each song
 
 Account page
 - User's account info (from signup)
@@ -46,25 +51,21 @@ Playlist page
 - Can change the order by dragging and dropping
 - Deleting songs or the whole playlist
 
-Logout Confirmation Modal
+Create Playlist page
+- Allows user to create playlists that are added to the user's profile
+- Form with title, song finder, and a save button
 
-**********************************************************
-In the left column:
+Playback control footer
+- Anywhere a song appears, it can be played (button appears on hover)
+- Appears while playing a song
+- Pause/play, forward/back, volume controls
 
-One of the options will allow opening a page with the complete list of the lists created by the user. Clicking on one of the lists will open the corresponding page, as explained above.
+Left column
+- Playlist dropdown (list of playlists. -> Playlist page)
+- Create playlist option (-> Create Playlist page)
 
-Another menu option will allow the creation of a playlist. This will open a page with a form to specify the list title, a song finder, and a save button. When the list is saved, it will be added to the user's profile.
-
-When logging in, a song search engine will be added to the header of the right column. When displaying the result, each song will have a button to start playing it as described in the next point and another button for the user to indicate that he/she likes it. If the user indicates that he/she likes a song, it will be added to the corresponding section in his/her profile. The search engine will have to be functional, even if the list of available songs will be limited.
-
-On all pages, songs can be played by clicking on the play button that appears when hovering the mouse over them. The panel with playback controls, including volume controls, will appear in the footer when playing a song.
-
-When logged in, the message in the footer will close.
-
-If you are not logged in, a section with the latest song or album releases will be added in the right column. Each item in this section will have a countdown counter. 
-
-When opening new pages (account, profile, artist profile, playlist, login, and register), the main structure with the left and right column header will have to be kept constant. 
-
-The tablet and mobile versions will have to be fully functional.
-
-HTML Web Storage can be used as an alternative to the cookie mechanism.
+Misc
+- When opening new pages the main structure with the left and right column header will have to be kept constant
+- The tablet and mobile versions will have to be fully functional
+- When logged in the message in the footer will close
+- If you are not logged in, a section with the latest song or album releases will be added in the right column. Each item in this section will have a countdown counter. 
