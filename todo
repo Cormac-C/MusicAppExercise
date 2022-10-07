@@ -1,4 +1,70 @@
-Better styling
+Login page
+- Form (user name, password + a button to submit)
+- Log in via Facebook / Google (not functional)
+- Appropriate error messages
 
+Signup page
+- Form
+  - Username (Required)
+  - Password (maximum? 8 characters. allowed characters: letters [a-z] and digits [0-9]) (Required)
+  - Personal information
+  - Name and Surname (Required)
+  - Email (will follow the format name@domain.extension) (Required)
+  - Date of birth (dd / mm / yyyy) (Required)
+  - Profile image (Optional)
+  - I have read and accepted the Terms of Use (Required)
+  - Save and delete buttons
+- Options to register with Facebook / Google (not functional)
+- Clicking 'save' will store a cookie with all the information in the form
+  - If there is a cookie with the same email, notify the user an account exists with that email
+- Appropriate error messages
 
-Image sources:
+Updated header
+- Login/signup if the user is not logged in
+- User's profile image if the user is logged in
+  - Clickable dropdown with options (account, profile, logout)
+
+Account page
+- User's account info (from signup)
+- Able to modify all their data
+- Saved changes are reflected in the corresponding cookie
+
+Profile page
+- Music options (all clickable to open a corresponding page)
+  - most listened to artists (-> Artist page)
+  - most played songs (-> Playlist page. uneditable?)
+  - songs liked (-> Playlist page. uneditable?)
+  - playlists created by the user (-> Playlist page)
+  - and the list of other users following the user (-> Profile page of another user)
+
+Arist page
+- List of published albums
+- Songs
+
+Playlist page
+- List of songs included
+- Can change the order by dragging and dropping
+- Deleting songs or the whole playlist
+
+Logout Confirmation Modal
+
+**********************************************************
+In the left column:
+
+One of the options will allow opening a page with the complete list of the lists created by the user. Clicking on one of the lists will open the corresponding page, as explained above.
+
+Another menu option will allow the creation of a playlist. This will open a page with a form to specify the list title, a song finder, and a save button. When the list is saved, it will be added to the user's profile.
+
+When logging in, a song search engine will be added to the header of the right column. When displaying the result, each song will have a button to start playing it as described in the next point and another button for the user to indicate that he/she likes it. If the user indicates that he/she likes a song, it will be added to the corresponding section in his/her profile. The search engine will have to be functional, even if the list of available songs will be limited.
+
+On all pages, songs can be played by clicking on the play button that appears when hovering the mouse over them. The panel with playback controls, including volume controls, will appear in the footer when playing a song.
+
+When logged in, the message in the footer will close.
+
+If you are not logged in, a section with the latest song or album releases will be added in the right column. Each item in this section will have a countdown counter. 
+
+When opening new pages (account, profile, artist profile, playlist, login, and register), the main structure with the left and right column header will have to be kept constant. 
+
+The tablet and mobile versions will have to be fully functional.
+
+HTML Web Storage can be used as an alternative to the cookie mechanism.
