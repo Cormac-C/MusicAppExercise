@@ -47,6 +47,69 @@
         <span>
           <h2>Create Account</h2>
         </span>
+        <form >
+            <label>
+                <strong>
+                    Login Information
+                </strong>
+            </label>
+            <br>
+            <label for="userName">Username:</label><br>
+            <input type="text" name="userName" required><br>
+            <label for="password">Password:</label><br>
+            <input type="text" name="password" required><br>
+            <br> <br>
+            <label>
+                <strong>
+                    Personal Information
+                </strong>
+            </label>
+            <br>
+            <label for="name">Name:</label><br>
+            <input type="text" name="name" required><br>
+            <label for="surname">Surname:</label><br>
+            <input type="text" name="surname" required><br>
+            <label for="email">Email:</label><br>
+            <input type="text" name="email" required><br>
+            <label for="dob">Date of Birth:</label><br>
+            <input type="date" name="dob" required><br>
+            <br> <br>
+            <label>
+                <strong>
+                    Profile Picture (Optional)
+                </strong>
+            </label>
+            <br>
+            <label for="profilePic">Add a Profile Picture:</label>
+            <input 
+                type="file"
+                id="profilePic" 
+                name="profilePic"
+                accept="image/png, image/jpeg"
+            >
+            <!-- TODO Add preview of uploaded pfp  -->
+            <br> <br>
+            <input type="checkbox" id="tAndC" name="tAndC" value="agree" required>
+            <label for="tAndC"> I have read and accepted the Terms of Use</label><br>
+            <br>
+            <input type="reset" value="Delete">
+            <input type="submit" value="Submit">
+            <!-- TODO input validation -->
+          </form>
+        <!-- - Form
+        - Username (Required) √
+        - Password (maximum? 8 characters. allowed characters: letters [a-z] and digits [0-9]) (Required) √
+        - Personal information √
+            - Name and Surname (Required)
+            - Email (will follow the format name@domain.extension) (Required)
+            - Date of birth (dd / mm / yyyy) (Required)
+        - Profile image (Optional) √
+        - I have read and accepted the Terms of Use (Required) √
+        - Save and delete buttons √
+        - Options to register with Facebook / Google (not functional)
+        - Clicking 'save' will store a cookie with all the information in the form
+        - If there is a cookie with the same email, notify the user an account exists with that email
+        - Appropriate error messages -->
       </div>
     </div>
   </body>
