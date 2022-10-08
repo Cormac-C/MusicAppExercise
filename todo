@@ -1,9 +1,9 @@
-Login page
+Login page Working
 - Form (user name, password + a button to submit)
 - Log in via Facebook / Google (not functional)
 - Appropriate error messages
 
-Signup page !Working on this!
+Signup page Kinda done, initial implementation. Would benefit from polishing
 - Form
   - Username (Required)
   - Password (maximum? 8 characters. allowed characters: letters [a-z] and digits [0-9]) (Required)
