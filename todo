@@ -3,7 +3,7 @@ Login page
 - Log in via Facebook / Google (not functional)
 - Appropriate error messages
 
-Signup page
+Signup page !Working on this!
 - Form
   - Username (Required)
   - Password (maximum? 8 characters. allowed characters: letters [a-z] and digits [0-9]) (Required)
