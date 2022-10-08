@@ -1,5 +1,6 @@
 <html>
   <head>
+    <script type="text/javascript" src="script/signup.js"></script>
     <title>Test Page</title>
     <link rel="stylesheet" type="text/css" href="style/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -47,7 +48,9 @@
         <span>
           <h2>Create Account</h2>
         </span>
-        <form >
+        <form 
+            onsubmit="return createCookie(event)"
+        >
             <label>
                 <strong>
                     Login Information
