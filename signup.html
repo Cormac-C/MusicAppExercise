@@ -57,7 +57,7 @@
             <label for="userName">Username:</label><br>
             <input type="text" name="userName" required><br>
             <label for="password">Password:</label><br>
-            <input type="text" name="password" required><br>
+            <input type="text" name="password" maxlength=8 pattern="[a-z0-9]{1,8}" required><br>
             <br> <br>
             <label>
                 <strong>
@@ -70,7 +70,7 @@
             <label for="surname">Surname:</label><br>
             <input type="text" name="surname" required><br>
             <label for="email">Email:</label><br>
-            <input type="text" name="email" required><br>
+            <input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
             <label for="dob">Date of Birth:</label><br>
             <input type="date" name="dob" required><br>
             <br> <br>
