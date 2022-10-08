@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <script type="text/javascript" src="script/login.js"></script>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="style/index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body class="body">
+    <div class="menu">
+        <a
+            class="topBar"
+            href="index.html"
+        >
+            <img src="images/keys.png" alt="Icon" width="30" height="30" />
+            <h1 class="appTitle">Music App</h3>
+        </a>
+      <div class="menuItem">
+        <img src="images/library.png" alt="Icon" width="30" height="30" />
+        <h4>Your Library</h4>
+      </div>
+      <div class="menuItem">
+        <img src="images/create.png" alt="Icon" width="30" height="30" />
+        <h4>Create Playlist</h4>
+      </div>
+      <div class="menuItem">
+        <img src="images/heart2.png" alt="Icon" width="30" height="30" />
+        <h4>Liked Songs</h4>
+      </div>
+      <div id="spacer"></div>
+      <div class="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+
+    <div class="rightCol">
+      <header class="topBar topButtons">
+        <button
+          onclick="location.href='signup.html';"
+        >
+          Sign Up
+        </button>
+        <button
+          onclick="location.href='login.html';"
+        >
+          Login
+        </button>
+      </header>
+      <div class="content">
+        <span>
+          <h2>Login</h2>
+        </span>
+        <form 
+            onsubmit="return checkCookie(event)"
+        >
+            <label for="userName">Username:</label><br>
+            <input type="text" name="userName" required><br>
+            <label for="password">Password:</label><br>
+            <input type="text" name="password" maxlength=8 pattern="[a-z0-9]{1,8}" required><br>
+            <br> <br>
+            <input type="submit" value="Submit">
+            <!-- TODO input validation -->
+          </form>
+          <hr>
+          <button>
+              Login with Facebook
+          </button>
+          <button>
+            Login with Google
+          </button>
+        <!-- - Login page Working
+        - Form (user name, password + a button to submit)
+        - Log in via Facebook / Google (not functional)
+        - Appropriate error messages -->
+      </div>
+    </div>
+  </body>
+</html>
