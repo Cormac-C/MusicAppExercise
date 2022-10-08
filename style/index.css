@@ -37,6 +37,10 @@
   padding-left: 5px;
   padding-right: 5px;
 }
+.topBar {
+  color: black;
+  text-decoration: none;
+}
 #spacer {
   flex: 1;
 }
