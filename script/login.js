@@ -12,13 +12,15 @@ function checkLogin(event) {
       if (parsed.password === loginInfo.password) {
         console.log("Password matches");
       } else {
-        console.log("Wrong Password");
+        window.alert("Incorrect Password");
+        event.target.reset();
       }
     } catch (error) {
       console.log(error, "e");
     }
   } else {
-    console.log("No user");
+    window.alert("No User Found with this Name");
+    event.target.reset();
   }
 
   return false;
