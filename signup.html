@@ -1,19 +1,16 @@
 <html>
   <head>
     <script type="text/javascript" src="script/signup.js"></script>
-    <title>Test Page</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="style/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body class="body">
     <div class="menu">
-        <a
-            class="topBar"
-            href="index.html"
-        >
-            <img src="images/keys.png" alt="Icon" width="30" height="30" />
-            <h1 class="appTitle">Music App</h3>
-        </a>
+      <a class="topBar" href="index.html">
+        <img src="images/keys.png" alt="Icon" width="30" height="30" />
+        <h1 class="appTitle">Music App</h3>
+      </a>
       <div class="menuItem">
         <img src="images/library.png" alt="Icon" width="30" height="30" />
         <h4>Your Library</h4>
@@ -50,64 +47,62 @@
         <span>
           <h2>Create Account</h2>
         </span>
-        <form 
-            onsubmit="return createCookie(event)"
-        >
-            <label>
-                <strong>
-                    Login Information
-                </strong>
-            </label>
-            <br>
-            <label for="userName">Username:</label><br>
-            <input type="text" name="userName" required><br>
-            <label for="password">Password:</label><br>
-            <input type="text" name="password" maxlength=8 pattern="[a-z0-9]{1,8}" required><br>
-            <br> <br>
-            <label>
-                <strong>
-                    Personal Information
-                </strong>
-            </label>
-            <br>
-            <label for="name">Name:</label><br>
-            <input type="text" name="name" required><br>
-            <label for="surname">Surname:</label><br>
-            <input type="text" name="surname" required><br>
-            <label for="email">Email:</label><br>
-            <input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
-            <label for="dob">Date of Birth:</label><br>
-            <input type="date" name="dob" required><br>
-            <br> <br>
-            <label>
-                <strong>
-                    Profile Picture (Optional)
-                </strong>
-            </label>
-            <br>
-            <label for="profilePic">Add a Profile Picture:</label>
-            <input 
-                type="file"
-                id="profilePic" 
-                name="profilePic"
-                accept="image/png, image/jpeg"
-            >
-            <!-- TODO Add preview of uploaded pfp  -->
-            <br> <br>
-            <input type="checkbox" id="tAndC" name="tAndC" value="agree" required>
-            <label for="tAndC"> I have read and accepted the Terms of Use</label><br>
-            <br>
-            <input type="reset" value="Delete">
-            <input type="submit" value="Submit">
-            <!-- TODO input validation -->
-          </form>
-          <hr>
-          <!-- TODO add photos -->
-          <button>
-              Register with Facebook
-          </button>
-          <button>
-            Register with Google
+        <form onsubmit="return createCookie(event)">
+          <label>
+            <strong>
+              Login Information
+            </strong>
+          </label>
+          <br>
+          <label for="userName">Username:</label><br>
+          <input type="text" name="userName" required><br>
+          <label for="password">Password:</label><br>
+          <input type="text" name="password" maxlength=8 pattern="[a-z0-9]{1,8}" required><br>
+          <br> <br>
+          <label>
+            <strong>
+              Personal Information
+            </strong>
+          </label>
+          <br>
+          <label for="name">Name:</label><br>
+          <input type="text" name="name" required><br>
+          <label for="surname">Surname:</label><br>
+          <input type="text" name="surname" required><br>
+          <label for="email">Email:</label><br>
+          <input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
+          <label for="dob">Date of Birth:</label><br>
+          <input type="date" name="dob" required><br>
+          <br> <br>
+          <label>
+            <strong>
+              Profile Picture (Optional)
+            </strong>
+          </label>
+          <br>
+          <label for="profilePic">Add a Profile Picture:</label>
+          <input 
+            type="file"
+            id="profilePic" 
+            name="profilePic"
+            accept="image/png, image/jpeg"
+          >
+          <!-- TODO Add preview of uploaded pfp  -->
+          <br> <br>
+          <input type="checkbox" id="tAndC" name="tAndC" value="agree" required>
+          <label for="tAndC"> I have read and accepted the Terms of Use</label><br>
+          <br>
+          <input type="reset" value="Delete">
+          <input type="submit" value="Submit">
+          <!-- TODO input validation -->
+        </form>
+        <hr>
+        <!-- TODO add photos -->
+        <button>
+          Register with Facebook
+        </button>
+        <button>
+          Register with Google
         </button>
         <!-- - Form
         - Username (Required) √
