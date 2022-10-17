@@ -1,9 +1,9 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="script/playlist.js" defer></script>
+    <script type="text/javascript" src="script/create-playlist.js"></script>
     <script type="text/json" src="script/songs.json"></script>
-    <title>Sign Up</title>
+    <title>Create Playlist</title>
     <link rel="stylesheet" type="text/css" href="style/index.css" />
     <link rel="stylesheet" type="text/css" href="style/playlist.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -47,8 +47,14 @@
         </button>
       </header>
       <div class="content">
-        <h2 id="playlist-title">Playlist Title</h2>
-        <p id="songs"></p>
+        <h2 id="playlist-title">Create Playlist</h2>
+        <h4>Title</h4>
+        <input type="text" name="Title" oninput="changeTitle(event)" required>
+        <div id="songs"></div>
+        <button onclick="savePlaylist()">Save Playlist</button>
+        <h4>Search</h4>
+        <input type="search" name="Find Song" oninput="searchSong(event)" required>
+        <div id="suggested-songs"></div>
       </div>
     </div>
   </body>

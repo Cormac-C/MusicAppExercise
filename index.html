@@ -5,6 +5,7 @@
         https://www.freeiconspng.com/downloadimg/18904
         https://freeicons.io/search/icons?q=music&iuc=512509757
     -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script/index.js"></script>
     <title>Test Page</title>
     <link rel="stylesheet" type="text/css" href="style/index.css" />
@@ -20,7 +21,7 @@
         <img src="images/library.png" alt="Icon" width="30" height="30" />
         <h4>Your Library</h4>
       </div>
-      <div class="menuItem">
+      <div class="menuItem" onclick="location.href='create-playlist.html';">
         <img src="images/create.png" alt="Icon" width="30" height="30" />
         <h4>Create Playlist</h4>
       </div>
@@ -50,33 +51,9 @@
       </header>
       <div class="content">
         <span>
-          <h2>Recent</h2>
+          <h2>Your Playlists</h2>
           <div class="gallery">
-            <button class="imageLabel">
-              <img class="playButton" src="images/playButton.png" alt="Icon" />
-              <img src="images/album1.jpg" alt="Icon" />
-              <h5>Spanish House</h5>
-            </button>
-            <button class="imageLabel">
-              <img class="playButton" src="images/playButton.png" alt="Icon" />
-              <img src="images/album2.jpg" alt="Icon" />
-              <h5>La Merce</h5>
-            </button>
-            <button class="imageLabel">
-              <img class="playButton" src="images/playButton.png" alt="Icon" />
-              <img src="images/album3.jpg" alt="Icon" />
-              <h5>EDM</h5>
-            </button>
-            <button class="imageLabel">
-              <img class="playButton" src="images/playButton.png" alt="Icon" />
-              <img src="images/album4.jpg" alt="Icon" />
-              <h5>Relaxing Vibes to Chill to</h5>
-            </button>
-            <button class="imageLabel">
-              <img class="playButton" src="images/playButton.png" alt="Icon" />
-              <img src="images/album5.jpg" alt="Icon" />
-              <h5>Classic Rock</h5>
-            </button>
+            <div id="#playlists"></div>
           </div>
         </span>
         <span>

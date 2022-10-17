@@ -73,13 +73,6 @@ const tempPlaylists = [
   }
 ];
 
-const urlParams = new URLSearchParams(window.location.search);
-const playlistID = urlParams.get('pID');
-
-if (tempPlaylists[playlistID]) {
-  setPageDetails(tempPlaylists[playlistID]);
-}
-
 // * Set page details
 function setPageDetails(playlist) {
   $("#playlist-title").html(playlist.title);
@@ -89,4 +82,13 @@ function setPageDetails(playlist) {
   });
 }
 
+function init() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const playlistID = urlParams.get('pID');
 
+  if (tempPlaylists[playlistID]) {
+    setPageDetails(tempPlaylists[playlistID]);
+  }
+}
+
+init();
