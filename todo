@@ -3,7 +3,7 @@ Login page Working
 - Log in via Facebook / Google (not functional)
 - Appropriate error messages
 
-Signup page Kinda done, initial implementation. Would benefit from polishing
+Signup page "Kinda done, initial implementation. Would benefit from polishing"
 - Form
   - Username (Required)
   - Password (maximum? 8 characters. allowed characters: letters [a-z] and digits [0-9]) (Required)
@@ -51,7 +51,7 @@ Playlist page
 - Can change the order by dragging and dropping
 - Deleting songs or the whole playlist
 
-Create Playlist page
+Create Playlist page "Done but really ugly"
 - Allows user to create playlists that are added to the user's profile
 - Form with title, song finder, and a save button
 

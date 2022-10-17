@@ -1,9 +1,3 @@
-const newPlaylist = {
-  title: "Best 2000's Party Music",
-  cover: "album14.jpg",
-  songs: []
-};
-
 const tempSongs = {
   "id-1": {
     "title": "Song 1",
@@ -13,52 +7,73 @@ const tempSongs = {
     "title": "Song 2",
     "artist": "Artist 1"
   }
-};
-
-function renderPlaylist() {
-  $("#songs").html("");
-  newPlaylist.songs.forEach(id => {
-    const song = tempSongs[id];
-    $("#songs").append(`<p>${song.title}: ${song.artist}</p>`);
-  });
 }
 
-function savePlaylist() {
-  let playlists = JSON.parse(localStorage.getItem("PLAYLISTS") ?? "[]");
-  playlists.push(newPlaylist);
-  console.log(playlists);
-  localStorage.setItem("PLAYLISTS", JSON.stringify(playlists));
-}
+class CreatePlaylist {
+  constructor() {
+    this.reset();
+  }
 
-function changeTitle(event) {
-  newPlaylist.title = event.target.value;
-}
+  reset() {
+    this.title = "";
+    this.cover = "album14.jpg";
+    this.songs = [];
+    $("#song-search").val("");
+    this.render();
+  }
 
-function addSong(id) {
-  console.log(id)
-  newPlaylist.songs.push(id);
-  console.log(newPlaylist.songs)
-  renderPlaylist();
-}
-
-function searchSong(event) {
-  const query = event.target.value;
-  if (query !== "") {
-    // Find songs where the title matches that aren't in the playlist
-    const songMatches = Object.entries(tempSongs).filter(
-      ([id, {title}]) => title.includes(query) && !newPlaylist.songs.includes(id)
-      );
-    // TODO: Find songs where the artist matches the query
-    // Add the matches to the DOM
-    $("#suggested-songs").html("");
-    songMatches.forEach(([id, {title, artist}]) => {
-      $("#suggested-songs").append(`<p onclick="addSong('${id}');">${title}: ${artist}</p>`);
+  render() {
+    $("#songs").html("");
+    this.songs.forEach(id => {
+      const song = tempSongs[id];
+      $("#songs").append(`<p>${song.title}: ${song.artist}</p>`);
     });
+    $("#title").val(this.title);
+    $("#save-button").attr("disabled", !this.canSave());
+  }
+
+  canSave() {
+    return this.title !== "" && this.songs.length > 0;
+  }
+
+  save() {
+    if (this.canSave()) {
+      let playlists = JSON.parse(localStorage.getItem("PLAYLISTS") ?? "[]");
+      playlists.push({
+        title: this.title,
+        cover: this.cover,
+        songs: this.songs,
+      });
+      localStorage.setItem("PLAYLISTS", JSON.stringify(playlists));
+      this.reset();
+    }
+  }
+
+  addSong(id) {
+    this.songs.push(id);
+    this.render();
+  }
+
+  changetitle(event) {
+    this.title = event.target.value;
+    this.render();
+  }
+
+  search(event) {
+    const query = event.target.value;
+    if (query !== "") {
+      // Find songs where the title matches that aren't in the playlist
+      const songMatches = Object.entries(tempSongs).filter(
+        ([id, {title}]) => title.includes(query) && !this.songs.includes(id)
+        );
+      // TODO: Find songs where the artist matches the query
+      // Add the matches to the DOM
+      $("#suggested-songs").html("");
+      songMatches.forEach(([id, {title, artist}]) => {
+        $("#suggested-songs").append(`<p onclick="ctrl.addSong('${id}');">${title}: ${artist}</p>`);
+      });
+    }
   }
 }
 
-function init() {
-  renderPlaylist();
-}
-
-init();
+const ctrl = new CreatePlaylist();
