@@ -85,6 +85,10 @@ footer > div {
   background-color: lightgray;
 }
 
+.topButtons > img {
+  max-width: 30px;
+}
+
 .menuItem {
   display: flex;
   align-items: center;
@@ -143,6 +147,10 @@ footer > div {
 .imageLabel:hover .playButton {
   display: block;
   position: absolute;
+}
+
+.profilePic {
+  max-width: 30px;
 }
 
 /* CSS for Tablets */

@@ -11,6 +11,8 @@ function checkLogin(event) {
       const parsed = JSON.parse(matchUser);
       if (parsed.password === loginInfo.password) {
         console.log("Password matches");
+        localStorage.setItem("currentUser", matchUser);
+        location.href = "index.html";
       } else {
         window.alert("Incorrect Password");
         event.target.reset();
