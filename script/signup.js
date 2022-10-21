@@ -5,5 +5,6 @@ function createCookie(event) {
     userCookie[key] = value;
   }
   localStorage.setItem(userCookie.userName, JSON.stringify(userCookie));
+  location.href = "login.html";
   return false;
 }
