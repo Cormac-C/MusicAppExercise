@@ -1,13 +1,4 @@
-const tempSongs = {
-  "id-1": {
-    "title": "Song 1",
-    "artist": "Artist 1"
-  },
-  "id-2": {
-    "title": "Song 2",
-    "artist": "Artist 1"
-  }
-}
+
 
 class CreatePlaylist {
   constructor() {
@@ -18,6 +9,7 @@ class CreatePlaylist {
     this.title = "";
     this.cover = "album14.jpg";
     this.songs = [];
+    this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
     $("#song-search").val("");
     this.render();
   }
@@ -25,7 +17,7 @@ class CreatePlaylist {
   render() {
     $("#songs").html("");
     this.songs.forEach(id => {
-      const song = tempSongs[id];
+      const song = this.possibleSongs[id];
       $("#songs").append(`<p>${song.title}: ${song.artist}</p>`);
     });
     $("#title").val(this.title);
@@ -63,7 +55,7 @@ class CreatePlaylist {
     const query = event.target.value;
     if (query !== "") {
       // Find songs where the title matches that aren't in the playlist
-      const songMatches = Object.entries(tempSongs).filter(
+      const songMatches = Object.entries(this.possibleSongs).filter(
         ([id, {title}]) => title.includes(query) && !this.songs.includes(id)
         );
       // TODO: Find songs where the artist matches the query

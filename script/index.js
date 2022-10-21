@@ -17,16 +17,6 @@ function renderPlaylists() {
 }
 
 function init() {
-  if (localStorage.getItem("currentUser")) {
-    const user = localStorage.getItem("currentUser");
-    const bar = document.getElementById("topBar");
-    bar.innerHTML = [
-      '<img src="',
-      user.profilePic || "images/user.png",
-      '" class=profilePic/>',
-    ].join("");
-  }
-
   renderPlaylists();
 }
 

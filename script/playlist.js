@@ -1,14 +1,3 @@
-const tempSongs = {
-  "id-1": {
-    "title": "Song 1",
-    "artist": "Artist 1"
-  },
-  "id-2": {
-    "title": "Song 2",
-    "artist": "Artist 1"
-  }
-}
-
 class UsePlaylist {
   constructor() {
     this.reset();
@@ -17,6 +6,7 @@ class UsePlaylist {
   reset() {
     const urlParams = new URLSearchParams(window.location.search);
     this.playlistID = urlParams.get('pID');
+    this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
 
     const playlists = JSON.parse(localStorage.getItem("PLAYLISTS") ?? "[]");
     const playlist = playlists[this.playlistID];
@@ -32,7 +22,7 @@ class UsePlaylist {
   render() {
     $("#playlist-title").html(this.playlist.title);
     this.playlist.songs.forEach(id => {
-      const song = tempSongs[id];
+      const song = this.possibleSongs[id];
       $("#songs").append(this.songRender(song.title, song.artist));
     });
   }
