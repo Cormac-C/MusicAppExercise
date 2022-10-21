@@ -8,7 +8,7 @@ class UsePlaylist {
     this.playlistID = urlParams.get('pID');
     this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
 
-    const playlists = JSON.parse(localStorage.getItem("PLAYLISTS") ?? "[]");
+    const playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
     const playlist = playlists[this.playlistID];
 
     if (playlist) {

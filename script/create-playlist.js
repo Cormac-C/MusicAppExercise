@@ -30,13 +30,13 @@ class CreatePlaylist {
 
   save() {
     if (this.canSave()) {
-      let playlists = JSON.parse(localStorage.getItem("PLAYLISTS") ?? "[]");
+      let playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
       playlists.push({
         title: this.title,
         cover: this.cover,
         songs: this.songs,
       });
-      localStorage.setItem("PLAYLISTS", JSON.stringify(playlists));
+      localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
       this.reset();
     }
   }
