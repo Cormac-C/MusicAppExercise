@@ -93,7 +93,8 @@ class UsePlaylist {
       $("#songs").append(this.songRender(song.title, song.artist, id, i));
     });
     if (!this.editable) {
-      $("#search").display("none");
+      $("#playlist-title").replaceWith(`<h2>${this.playlist.title}</h2>`);
+      $("#search").hide();
     }
   }
 
@@ -131,14 +132,18 @@ class UsePlaylist {
   }
 
   changetitle(event) {
-    this.playlist.title = event.target.value;
-    this.save();
+    if (this.editable) {
+      this.playlist.title = event.target.value;
+      this.save();
+    }
   }
 
   addSong(id) {
-    this.playlist.songs.push(id);
-    this.save();
-    this.render();
+    if (this.editable) {
+      this.playlist.songs.push(id);
+      this.save();
+      this.render();
+    }
   }
 
   error(msg="Uh oh! Something went wrong :(") {
