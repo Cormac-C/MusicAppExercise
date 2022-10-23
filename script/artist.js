@@ -26,8 +26,8 @@ class Artist {
 
   render() {
     $("#artist-name").html(this.artist);
-    Object.entries(this.albums).forEach(([title, songs], i) => {
-      $("#albums").append(this.albumRender(title, songs, i));
+    Object.entries(this.albums).forEach(([title, songs]) => {
+      $("#albums").append(this.albumRender(title, songs));
     });
   }
 
@@ -37,10 +37,10 @@ class Artist {
     );
   }
 
-  albumRender(title, songs, index) {
+  albumRender(title, songs) {
     return (
       `
-      <button class="imageLabel" onClick="location.href = 'playlist.html?pID=${index}';">
+      <button class="imageLabel" onClick="location.href = 'playlist.html?type=album&ID=${title}&artist=${this.artist}';">
         <img class="playButton" src="images/playButton.png" alt="Icon" />
         <img src="images/album13.jpg" alt="Icon" />
         <h5>${title}</h5>

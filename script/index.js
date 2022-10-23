@@ -1,7 +1,7 @@
 function playlistRender(playlist, index) {
   return (
     `
-    <button class="imageLabel" onClick="location.href = 'playlist.html?pID=${index}';">
+    <button class="imageLabel" onClick="location.href = 'playlist.html?ID=${index}';">
       <img class="playButton" src="images/playButton.png" alt="Icon" />
       <img src="images/${playlist.cover}" alt="Icon" />
       <h5>${playlist.title}</h5>

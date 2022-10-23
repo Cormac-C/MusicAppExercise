@@ -1,4 +1,14 @@
 #songs {
   display: flex;
   flex-direction: column;
+  margin: 0;
+}
+
+.song {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid black;
+}
+.song > p:first-child {
+  flex: 1;
 }
