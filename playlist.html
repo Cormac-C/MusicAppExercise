@@ -18,7 +18,7 @@
         <img src="images/library.png" alt="Icon" width="30" height="30" />
         <h4>Your Library</h4>
       </div>
-      <div class="menuItem" onclick="location.href='create-playlist.html';">
+      <div class="menuItem" onclick="location.href='playlist.html?type=new-playlist';">
         <img src="images/create.png" alt="Icon" width="30" height="30" />
         <h4>Create Playlist</h4>
       </div>
@@ -47,12 +47,13 @@
         </button>
       </header>
       <div class="content">
-        <h2 id="playlist-title">Playlist Title</h2>
-        <p id="songs" ondrop="ctrl.handleDragEnd(event)" ondragover="ctrl.handleDrag(event)"></p>
-        <!-- <div class="song">
-          <p>Superstition</p>
-          <p>Stevie Wonder</p>
-        </div> -->
+        <input id="playlist-title" type="text" name="Title" oninput="ctrl.changetitle(event)">
+        <div id="songs" ondrop="ctrl.handleDragEnd(event)" ondragover="ctrl.handleDrag(event)"></div>
+        <div id="search">
+          <h4>Search</h4>
+          <input id="song-search" type="search" name="Find Song" oninput="ctrl.songSearch(event)" required>
+          <div id="suggested-songs"></div>
+        </div>
       </div>
     </div>
   </body>

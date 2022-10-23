@@ -14,20 +14,30 @@ class UsePlaylist {
       case "album":
         this.playlist = this.getAlbum(urlParams.get('artist'));
         break;
+      case "new-playlist":
+        const newPlaylists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
+        newPlaylists.push({
+          title: "New Playlist",
+          cover: "album14.jpg",
+          songs: [],
+        });
+        localStorage.setItem("USER-PLAYLISTS", JSON.stringify(newPlaylists));
+        location.href = `playlist.html?type=user-playlist&ID=${newPlaylists.length - 1}`;
+        break;
       case "user-playlist":
         this.editable = true;
         const playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
         this.playlist = playlists[this.ID];
         break;
       default:
-        this.error();
+        this.error("Unknown action type");
         return;
       }
         
     if (this.playlist) {
       this.render();
     } else {
-      this.error();
+      this.error("Playlist not found :(");
     }
   }
 
@@ -77,11 +87,14 @@ class UsePlaylist {
 
   render() {
     $("#songs").html(""); // Reset song list
-    $("#playlist-title").html(this.playlist.title);
+    $("#playlist-title").val(this.playlist.title);
     this.playlist.songs.forEach((id, i) => {
       const song = this.possibleSongs[id];
       $("#songs").append(this.songRender(song.title, song.artist, id, i));
     });
+    if (!this.editable) {
+      $("#search").display("none");
+    }
   }
 
   songRender(title, artist, id, index) {
@@ -101,8 +114,35 @@ class UsePlaylist {
     );
   }
 
-  error() {
-    $("#playlist-title").html("Uh oh! Something went wrong :(");
+  songSearch(event) {
+    const query = event.target.value;
+    if (query !== "") {
+      // Find songs where the title matches that aren't in the playlist
+      const songMatches = Object.entries(this.possibleSongs).filter(
+        ([id, {title}]) => title.includes(query) && !this.playlist.songs.includes(id)
+      );
+      // TODO: Find songs where the artist matches the query
+      // Add the matches to the DOM
+      $("#suggested-songs").html("");
+      songMatches.forEach(([id, {title, artist}]) => {
+        $("#suggested-songs").append(`<p onclick="ctrl.addSong('${id}');">${title}: ${artist}</p>`);
+      });
+    }
+  }
+
+  changetitle(event) {
+    this.playlist.title = event.target.value;
+    this.save();
+  }
+
+  addSong(id) {
+    this.playlist.songs.push(id);
+    this.save();
+    this.render();
+  }
+
+  error(msg="Uh oh! Something went wrong :(") {
+    $("#playlist-title").html(msg);
   }
 }
 

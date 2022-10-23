@@ -12,3 +12,12 @@
 .song > p:first-child {
   flex: 1;
 }
+
+#playlist-title {
+  border: none;
+  font-size: 2rem;
+}
+
+#search {
+
+}
