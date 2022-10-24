@@ -92,7 +92,8 @@ footer > div {
 .menuItem {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  color: black;
+  text-decoration: none;
 }
 
 .menuItem > * {

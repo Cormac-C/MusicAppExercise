@@ -42,16 +42,16 @@ Profile page
   - playlists created by the user (-> Playlist page)
   - and the list of other users following the user (-> Profile page of another user)
 
-Arist page
+Arist page "No songs yet, just albums"
 - List of published albums
 - Songs
 
-Playlist page
+Playlist page "Done but ugly"
 - List of songs included
 - Can change the order by dragging and dropping
 - Deleting songs or the whole playlist
 
-Create Playlist page "Done but really ugly"
+Create Playlist page "Done, doesn't include a save button"
 - Allows user to create playlists that are added to the user's profile
 - Form with title, song finder, and a save button
 
