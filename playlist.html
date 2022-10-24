@@ -4,6 +4,7 @@
     <script type="text/javascript" src="script/common.js" defer></script>
     <script type="text/javascript" src="script/playlist.js" defer></script>
     <title>Playlist</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" type="text/css" href="style/index.css" />
     <link rel="stylesheet" type="text/css" href="style/playlist.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -47,10 +48,11 @@
         </button>
       </header>
       <div class="content">
-        <input id="playlist-title" type="text" name="Title" oninput="ctrl.changetitle(event)">
+        <input id="playlist-title" type="text" name="Title" oninput="ctrl.changeTitle(event)">
+        <span id="delete-playlist" class="material-symbols-rounded" onclick="ctrl.deletePlaylist()">delete</span>
         <div id="songs" ondrop="ctrl.handleDragEnd(event)" ondragover="ctrl.handleDrag(event)"></div>
         <div id="search">
-          <h4>Search</h4>
+          <h3>Search</h3>
           <input id="song-search" type="search" name="Find Song" oninput="ctrl.songSearch(event)" required>
           <div id="suggested-songs"></div>
         </div>

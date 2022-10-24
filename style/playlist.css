@@ -7,15 +7,36 @@
 .song {
   display: flex;
   flex-direction: row;
-  border-top: 1px solid black;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 8px;
+  margin: .5rem 0;
 }
-.song > p:first-child {
+.song > .info {
   flex: 1;
+  margin: .5rem;
+}
+.song > .info > * {
+  margin: 0;
+}
+.song > .actions {
+  cursor: pointer;
+  opacity: 0;
+}
+.song > .handle {
+  cursor: grab;
+  opacity: 0;
+}
+.song:hover > .actions, .song:hover > .handle {
+  opacity: 1;
 }
 
 #playlist-title {
   border: none;
   font-size: 2rem;
+}
+#delete-playlist {
+  cursor: pointer;
 }
 
 #search {

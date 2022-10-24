@@ -14,6 +14,8 @@ class UsePlaylist {
       case "album":
         this.playlist = this.getAlbum(urlParams.get('artist'));
         break;
+      case "liked":
+        this.playlist = JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]");
       case "new-playlist":
         const newPlaylists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
         newPlaylists.push({
@@ -43,6 +45,7 @@ class UsePlaylist {
 
   getAlbum(artist) {
     const album = this.ID;
+    if (!artist || !album) return {};
     return {
       title: `${album} by ${artist}`,
       cover: this.cover,
@@ -95,21 +98,35 @@ class UsePlaylist {
     if (!this.editable) {
       $("#playlist-title").replaceWith(`<h2>${this.playlist.title}</h2>`);
       $("#search").hide();
+      $("#delete-playlist").hide();
+      $(".actions").hide();
+      $(".handle").hide();
     }
   }
 
   songRender(title, artist, id, index) {
     return (
       `
-      <div
-        id="${id}"
-        ondragstart="ctrl.handleDragStart(event, ${index})"
-        draggable="${this.editable}"
-        ${this.editable ? 'style="cursor: grab"' : null}
-        class="song"
-      >
-        <p>${title}</p>
-        <p>${artist}</p>
+      <div id="${id}" class="song">
+        <span 
+          class="handle material-symbols-rounded"
+          ondragstart="ctrl.handleDragStart(event, ${index})"
+          draggable="${this.editable}"
+        >
+        menu
+      </span>
+        <div class="info">
+          <h3>${title}</h3>
+          <p>${artist}</p>
+        </div>
+        <div class="actions">
+          <span 
+            class="material-symbols-rounded"
+            onclick="ctrl.deleteSong(${index})"
+          >
+            delete
+          </span>
+        </div>
       </div>
       `
     );
@@ -131,7 +148,7 @@ class UsePlaylist {
     }
   }
 
-  changetitle(event) {
+  changeTitle(event) {
     if (this.editable) {
       this.playlist.title = event.target.value;
       this.save();
@@ -139,10 +156,28 @@ class UsePlaylist {
   }
 
   addSong(id) {
-    if (this.editable) {
+    if (this.editable && !this.playlist.songs.includes(id)) {
       this.playlist.songs.push(id);
       this.save();
       this.render();
+    }
+  }
+
+  deleteSong(index) {
+    if (this.editable && index < this.playlist.songs.length) {
+      this.playlist.songs.splice(index, 1);
+      this.save();
+      this.render();
+    }
+  }
+
+  deletePlaylist() {
+    console.log("Hello!");
+    if (this.editable) {
+      const playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
+      playlists.splice(this.ID, 1);
+      localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
+      location.href = "index.html";
     }
   }
 
