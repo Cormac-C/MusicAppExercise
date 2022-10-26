@@ -9,8 +9,9 @@ let logout = () => {
 try {
   if (localStorage.getItem("currentUser")) {
     const user = localStorage.getItem("currentUser");
-    $("#topBar").html([
-      '<img src="',
+    $("#topBar").html(
+      [
+        '<img src="',
         user.profilePic || "images/user.png",
         '" class=profilePic/>',
         "<button id='logout'>",
@@ -18,6 +19,7 @@ try {
       ].join("")
     );
     $("#logout").click(logout);
+    $("#footer").hide();
   }
 } catch (error) {
   console.log(error);
