@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="script/common.js" defer></script>
+    <script type="text/javascript" src="script/account.js"></script>
+    <title>Account</title>
+    <link rel="stylesheet" type="text/css" href="style/index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body class="body">
+    <div class="menu">
+      <a class="topBar" href="index.html">
+        <img src="images/keys.png" alt="Icon" width="30" height="30" />
+        <h1 class="appTitle">Music App</h3>
+      </a>
+      <a class="menuItem" href="index.html">
+        <img src="images/library.png" alt="Icon" width="30" height="30" />
+        <h4>Your Library</h4>
+      </a>
+      <a class="menuItem" href="playlist.html?type=new-playlist">
+        <img src="images/create.png" alt="Icon" width="30" height="30" />
+        <h4>Create Playlist</h4>
+      </a>
+      <a class="menuItem"  href="playlist.html?type=liked">
+        <img src="images/heart2.png" alt="Icon" width="30" height="30" />
+        <h4>Liked Songs</h4>
+      </a>
+      <div id="spacer"></div>
+      <div class="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+
+    <div class="rightCol">
+      <header id="topBar" class="topBar topButtons">
+        <button
+          onclick="location.href='signup.html';"
+        >
+          Sign Up
+        </button>
+        <button
+          onclick="location.href='login.html';"
+        >
+          Login
+        </button>
+      </header>
+      <div class="content">
+        <span>
+          <h2>Account</h2>
+        </span>
+        <form onsubmit="return updateCookies(event)">
+          <label>
+            <strong>
+              Personal Information
+            </strong>
+          </label>
+          <br>
+          <label for="name">Name:</label><br>
+          <input id="name" type="text" name="name" required><br>
+          <label for="surname">Surname:</label><br>
+          <input id="surname" type="text" name="surname" required><br>
+          <label for="email">Email:</label><br>
+          <input id="email" type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
+          <label for="dob">Date of Birth:</label><br>
+          <input id="dob" type="date" name="dob" required><br>
+          <br> <br>
+          <label>
+            <strong>
+              Profile Picture (Optional)
+            </strong>
+          </label>
+          <br>
+          <label for="profilePic">Add a Profile Picture:</label>
+          <input 
+            type="file"
+            id="profilePic" 
+            name="profilePic"
+            accept="image/png, image/jpeg"
+          >
+          <br> <br>
+          <input type="reset" value="Delete">
+          <input type="submit" value="Save">
+          <!-- TODO input validation -->
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

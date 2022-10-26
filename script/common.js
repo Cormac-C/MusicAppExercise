@@ -1,8 +1,16 @@
 // * SHOULD RUN ON ALL PAGES
 
+let goToAccount = () => {
+  location.href = "account.html";
+};
+
+let goToProfile = () => {
+  location.href = "profile.html";
+};
+
 let logout = () => {
   localStorage.removeItem("currentUser");
-  location.reload();
+  location.href = "index.html";
 };
 
 let toggleDropdown = () => {
@@ -30,6 +38,8 @@ try {
     );
     $("#pic").click(toggleDropdown);
     $("#logout").click(logout);
+    $("#account").click(goToAccount);
+    $("#profile").click(goToProfile);
     $("#logout").hide();
     $("#profile").hide();
     $("#account").hide();
