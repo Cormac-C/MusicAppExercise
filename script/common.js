@@ -5,20 +5,34 @@ let logout = () => {
   location.reload();
 };
 
+let toggleDropdown = () => {
+  $("#logout").toggle();
+  $("#profile").toggle();
+  $("#account").toggle();
+};
+
 // TODO: Figure out error
 try {
   if (localStorage.getItem("currentUser")) {
     const user = localStorage.getItem("currentUser");
     $("#topBar").html(
       [
-        '<img src="',
+        '<img id="pic" src="',
         user.profilePic || "images/user.png",
         '" class=profilePic/>',
+        "<button id='account'>",
+        "Account",
+        "<button id='profile'>",
+        "Profile",
         "<button id='logout'>",
         "Logout",
       ].join("")
     );
+    $("#pic").click(toggleDropdown);
     $("#logout").click(logout);
+    $("#logout").hide();
+    $("#profile").hide();
+    $("#account").hide();
     $("#footer").hide();
   }
 } catch (error) {
