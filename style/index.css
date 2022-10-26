@@ -87,6 +87,15 @@ footer > div {
   max-width: 30px;
 }
 
+.topButtons > img:hover {
+  background-color: lightgray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  border-radius: 25px;
+}
+
 .menuItem {
   display: flex;
   align-items: center;
@@ -146,10 +155,6 @@ footer > div {
 .imageLabel:hover .playButton {
   display: block;
   position: absolute;
-}
-
-.profilePic {
-  max-width: 30px;
 }
 
 /* CSS for Tablets */
