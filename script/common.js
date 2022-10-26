@@ -9,16 +9,15 @@ let logout = () => {
 try {
   if (localStorage.getItem("currentUser")) {
     const user = localStorage.getItem("currentUser");
-    const bar = document.getElementById("topBar");
-    bar.innerHTML = [
+    $("#topBar").html([
       '<img src="',
-      user.profilePic || "images/user.png",
-      '" class=profilePic/>',
-      "<button id='logout'>",
-      "Logout",
-    ].join("");
-    const button = document.getElementById("logout");
-    button.onclick = logout;
+        user.profilePic || "images/user.png",
+        '" class=profilePic/>',
+        "<button id='logout'>",
+        "Logout",
+      ].join("")
+    );
+    $("#logout").click(logout);
   }
 } catch (error) {
   console.log(error);
