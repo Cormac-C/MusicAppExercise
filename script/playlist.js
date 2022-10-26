@@ -9,13 +9,19 @@ class UsePlaylist {
     this.type = urlParams.get('type') ?? "user-playlist";
     this.editable = false;
     this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
+    this.likedSongs = JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]");
 
     switch (this.type) {
       case "album":
         this.playlist = this.getAlbum(urlParams.get('artist'));
         break;
       case "liked":
-        this.playlist = JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]");
+        this.playlist = {
+          title: "Liked Songs",
+          cover: "",
+          songs: this.likedSongs
+        };
+        break;
       case "new-playlist":
         const newPlaylists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
         newPlaylists.push({
@@ -83,17 +89,18 @@ class UsePlaylist {
   }
 
   save() {
-    let playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
-    playlists.splice(this.ID, 1, this.playlist); // Replace playlist with a new one
-    localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
+    if (this.type === "user-playlist") {
+      let playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
+      playlists.splice(this.ID, 1, this.playlist); // Replace playlist with a new one
+      localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
+    }
   }
 
   render() {
     $("#songs").html(""); // Reset song list
     $("#playlist-title").val(this.playlist.title);
     this.playlist.songs.forEach((id, i) => {
-      const song = this.possibleSongs[id];
-      $("#songs").append(this.songRender(song.title, song.artist, id, i));
+      $("#songs").append(this.songRender(id, i));
     });
     if (!this.editable) {
       $("#playlist-title").replaceWith(`<h2>${this.playlist.title}</h2>`);
@@ -104,7 +111,8 @@ class UsePlaylist {
     }
   }
 
-  songRender(title, artist, id, index) {
+  songRender(id, index) {
+    const { artist, title } = this.possibleSongs[id];
     return (
       `
       <div id="${id}" class="song">
@@ -119,6 +127,11 @@ class UsePlaylist {
           <h3>${title}</h3>
           <p>${artist}</p>
         </div>
+        <img
+          src="images/heart-${this.likedSongs.includes(id) ? 'full' : 'empty'}.svg"
+          height="24px"
+          onclick="ctrl.likeSong('${id}')"
+        />
         <div class="actions">
           <span 
             class="material-symbols-rounded"
@@ -169,6 +182,16 @@ class UsePlaylist {
       this.save();
       this.render();
     }
+  }
+
+  likeSong(id) {
+    if (this.likedSongs.includes(id)) {
+      this.likedSongs = this.likedSongs.filter(song => song != id);
+    } else{
+      this.likedSongs.push(id);
+    }
+    localStorage.setItem("USER-LIKED-SONGS", JSON.stringify(this.likedSongs));
+    this.reset(); // Overkill, but easy
   }
 
   deletePlaylist() {

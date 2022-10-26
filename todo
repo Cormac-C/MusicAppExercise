@@ -34,7 +34,7 @@ Account page
 - Able to modify all their data
 - Saved changes are reflected in the corresponding cookie
 
-Profile page
+Profile page "No playlists created by other users"
 - Music options (all clickable to open a corresponding page)
   - most listened to artists (-> Artist page)
   - most played songs (-> Playlist page. uneditable?)
@@ -60,7 +60,7 @@ Playback control footer
 - Appears while playing a song
 - Pause/play, forward/back, volume controls
 
-Left column
+Left column "Done"
 - Playlist dropdown (list of playlists. -> Playlist page)
 - Create playlist option (-> Create Playlist page)
 
