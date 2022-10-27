@@ -72,7 +72,9 @@ Misc
 
 
 **************************
-### Ideas
-User data - cookies / Web storage
-Songs - JSON with references to MP3s
-Repeated Components (e.g. song tiles) - HTML template Web components OR JQuery shenanigans?
+### Remaining Work
+1. Profile Page - basically just index.html rn?
+2. Logout confirmation modal
+3. Artist Page - songs
+4. Dedicated user-playlists page?
+5. SONG PLAYING

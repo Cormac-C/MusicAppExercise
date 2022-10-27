@@ -45,6 +45,8 @@ try {
     $("#profile").hide();
     $("#account").hide();
     $("#footer").hide();
+  } else {
+    $("#header-search").hide();
   }
 } catch (error) {
   console.log(error);
