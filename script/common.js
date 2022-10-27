@@ -9,8 +9,10 @@ let goToProfile = () => {
 };
 
 let logout = () => {
-  localStorage.removeItem("currentUser");
-  location.href = "index.html";
+  if (confirm("Are you sure you want to logout?")) {
+    localStorage.removeItem("currentUser");
+    location.href = "index.html";
+  }
 };
 
 let toggleDropdown = () => {
@@ -23,7 +25,7 @@ let toggleDropdown = () => {
 try {
   if (localStorage.getItem("currentUser")) {
     const user = localStorage.getItem("currentUser");
-    $("#topBar > button").hide()
+    $("#topBar > button").hide();
     $("#topBar").append(
       [
         '<img id="pic" src="',
@@ -75,11 +77,12 @@ if (!localStorage.getItem("songs")) {
   );
 }
 
-
 class SearchController {
   constructor() {
     this.songs = JSON.parse(localStorage.getItem("songs"));
-    this.likedSongs =  JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]");
+    this.likedSongs = JSON.parse(
+      localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
+    );
     this.query = "";
   }
 
@@ -88,17 +91,19 @@ class SearchController {
     this.query = query;
     if (this.query !== "") {
       // Find songs where the title matches that aren't in the playlist
-      const songMatches = Object.entries(this.songs).filter(
-        ([id, {title}]) => title.includes(this.query)
+      const songMatches = Object.entries(this.songs).filter(([id, { title }]) =>
+        title.includes(this.query)
       );
       // Add the matches to the DOM
-      songMatches.forEach(([id, {title, artist}]) => {
+      songMatches.forEach(([id, { title, artist }]) => {
         $("#header-search-suggestions").append(
           `
             <p>
               ${title}: ${artist}
               <img
-                src="images/heart-${this.likedSongs.includes(id) ? 'full' : 'empty'}.svg"
+                src="images/heart-${
+                  this.likedSongs.includes(id) ? "full" : "empty"
+                }.svg"
                 height="24px"
                 onclick="search.likeSong('${id}')"
                 style="cursor: pointer"
@@ -112,8 +117,8 @@ class SearchController {
 
   likeSong(id) {
     if (this.likedSongs.includes(id)) {
-      this.likedSongs = this.likedSongs.filter(song => song != id);
-    } else{
+      this.likedSongs = this.likedSongs.filter((song) => song != id);
+    } else {
       this.likedSongs.push(id);
     }
     localStorage.setItem("USER-LIKED-SONGS", JSON.stringify(this.likedSongs));
