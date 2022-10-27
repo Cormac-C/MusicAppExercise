@@ -23,7 +23,7 @@ Updated header
 - Login/signup if the user is not logged in
 - User's profile image if the user is logged in
   - Clickable dropdown with options (account, profile, logout)
-  - Logout confirmation modal
+  - Logout confirmation modal - Working
 - a song search engine (functional)
   - Actually returns a list of songs
   - Button to start playing it
@@ -77,4 +77,6 @@ Misc
 2. Logout confirmation modal
 3. Artist Page - songs
 4. Dedicated user-playlists page?
-5. SONG PLAYING
+5. SONG PLAYING - playback controls
+6. Latest song / countdown right section
+7. Check tablet and mobile
