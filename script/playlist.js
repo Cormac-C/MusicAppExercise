@@ -131,6 +131,7 @@ class UsePlaylist {
           src="images/heart-${this.likedSongs.includes(id) ? 'full' : 'empty'}.svg"
           height="24px"
           onclick="ctrl.likeSong('${id}')"
+          style="cursor: pointer"
         />
         <div class="actions">
           <span 
@@ -146,6 +147,7 @@ class UsePlaylist {
   }
 
   songSearch(event) {
+    $("#suggested-songs").html("");
     const query = event.target.value;
     if (query !== "") {
       // Find songs where the title matches that aren't in the playlist
@@ -154,7 +156,6 @@ class UsePlaylist {
       );
       // TODO: Find songs where the artist matches the query
       // Add the matches to the DOM
-      $("#suggested-songs").html("");
       songMatches.forEach(([id, {title, artist}]) => {
         $("#suggested-songs").append(`<p onclick="ctrl.addSong('${id}');">${title}: ${artist}</p>`);
       });

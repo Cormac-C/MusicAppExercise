@@ -96,6 +96,39 @@ footer > div {
   border-radius: 25px;
 }
 
+#header-search {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+#header-search input {
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #fff;
+}
+#header-search input:focus {
+  outline: none;
+}
+#header-search-suggestions {
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+}
+#header-search-suggestions p {
+  border: 1px solid #e5e5e5;
+  padding: 8px 16px;
+  margin: 0;
+  cursor: pointer;
+}
+#header-search-suggestions p:hover {
+  background-color: #eee;
+}
+
 .menuItem {
   display: flex;
   align-items: center;

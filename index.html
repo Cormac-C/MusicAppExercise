@@ -39,6 +39,10 @@
 
     <div class="rightCol">
       <header id="topBar" class="topBar topButtons">
+        <div id="header-search">
+          <input type="text" placeholder="Search.." onkeyup="search.find(event.target.value)">
+          <div id="header-search-suggestions"></div>
+        </div>
         <button
           onclick="location.href='signup.html';"
         >

@@ -23,7 +23,8 @@ let toggleDropdown = () => {
 try {
   if (localStorage.getItem("currentUser")) {
     const user = localStorage.getItem("currentUser");
-    $("#topBar").html(
+    $("#topBar > button").hide()
+    $("#topBar").append(
       [
         '<img id="pic" src="',
         user.profilePic || "images/user.png",
@@ -71,3 +72,51 @@ if (!localStorage.getItem("songs")) {
     ])
   );
 }
+
+
+class SearchController {
+  constructor() {
+    this.songs = JSON.parse(localStorage.getItem("songs"));
+    this.likedSongs =  JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]");
+    this.query = "";
+  }
+
+  find(query) {
+    $("#header-search-suggestions").html("");
+    this.query = query;
+    if (this.query !== "") {
+      // Find songs where the title matches that aren't in the playlist
+      const songMatches = Object.entries(this.songs).filter(
+        ([id, {title}]) => title.includes(this.query)
+      );
+      // Add the matches to the DOM
+      songMatches.forEach(([id, {title, artist}]) => {
+        $("#header-search-suggestions").append(
+          `
+            <p>
+              ${title}: ${artist}
+              <img
+                src="images/heart-${this.likedSongs.includes(id) ? 'full' : 'empty'}.svg"
+                height="24px"
+                onclick="search.likeSong('${id}')"
+                style="cursor: pointer"
+              />
+            </p>
+          `
+        );
+      });
+    }
+  }
+
+  likeSong(id) {
+    if (this.likedSongs.includes(id)) {
+      this.likedSongs = this.likedSongs.filter(song => song != id);
+    } else{
+      this.likedSongs.push(id);
+    }
+    localStorage.setItem("USER-LIKED-SONGS", JSON.stringify(this.likedSongs));
+    this.find(this.query); // Refresh search results to rerender the heart icon
+  }
+}
+
+const search = new SearchController();
