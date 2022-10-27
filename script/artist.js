@@ -5,7 +5,7 @@ class Artist {
 
   reset() {
     const urlParams = new URLSearchParams(window.location.search);
-    this.artist = urlParams.get('artist');
+    this.artist = urlParams.get("artist");
     this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
 
     if (this.possibleSongs) {
@@ -29,25 +29,31 @@ class Artist {
     Object.entries(this.albums).forEach(([title, songs]) => {
       $("#albums").append(this.albumRender(title, songs));
     });
+    Object.entries(this.possibleSongs).forEach(([index, details]) => {
+      $("#songs").append(this.songRender(index, details.title, details.album));
+    });
   }
 
-  songRender(title, artist) {
-    return (
-      `<p>${title}: ${artist}</p>`
-    );
+  songRender(index, title, album) {
+    return `
+      <div id="${index}" class="song">
+        <div class="info">
+          <h3>${title}</h3>
+          <p>${album}</p>
+        </div>
+      </div>
+    `;
   }
 
   albumRender(title, songs) {
-    return (
-      `
+    return `
       <button class="imageLabel" onClick="location.href = 'playlist.html?type=album&ID=${title}&artist=${this.artist}';">
         <img class="playButton" src="images/playButton.png" alt="Icon" />
         <img src="images/album13.jpg" alt="Icon" />
         <h5>${title}</h5>
         <p>${songs.length} Songs</p>
       </button>
-      `
-    );
+      `;
   }
 
   error() {
