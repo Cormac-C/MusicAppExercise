@@ -12,13 +12,27 @@ $(document).ready(function () {
   }
 });
 
+function encodeImage(userCookie, file) {
+  var reader = new FileReader();
+  reader.onloadend = function () {
+    userCookie["profilePic"] = reader.result;
+    localStorage.setItem(userCookie.userName, JSON.stringify(userCookie));
+    localStorage.setItem("currentUser", JSON.stringify(userCookie));
+  };
+  reader.readAsDataURL(file);
+}
+
 function updateCookies(event) {
   event.preventDefault();
   const user = JSON.parse(localStorage.getItem("currentUser"));
   const userCookie = user;
   const formData = new FormData(event.target);
   for (var [key, value] of formData.entries()) {
-    userCookie[key] = value;
+    if (key === "profilePic") {
+      userCookie[key] = encodeImage(userCookie, value);
+    } else {
+      userCookie[key] = value;
+    }
   }
   localStorage.setItem(userCookie.userName, JSON.stringify(userCookie));
   localStorage.setItem("currentUser", JSON.stringify(userCookie));

@@ -24,7 +24,7 @@ let toggleDropdown = () => {
 // TODO: Figure out error
 try {
   if (localStorage.getItem("currentUser")) {
-    const user = localStorage.getItem("currentUser");
+    const user = JSON.parse(localStorage.getItem("currentUser"));
     $("#topBar > button").hide();
     $("#topBar").append(
       [
@@ -146,7 +146,7 @@ class PlayerController {
     this.songs = JSON.parse(localStorage.getItem("songs"));
     this.reset();
   }
-  
+
   reset() {
     this.paused = true;
     const songID = localStorage.getItem("CURRENT-SONG");
@@ -170,7 +170,7 @@ class PlayerController {
         Your browser does not support the audio element.
       </audio>
       `
-    )
+    );
   }
 }
 
