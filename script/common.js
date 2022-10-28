@@ -46,7 +46,7 @@ try {
     $("#logout").hide();
     $("#profile").hide();
     $("#account").hide();
-    // $("#footer > #sign-up-message").hide();
+    $("#footer").hide();
   } else {
     $("#header-search").hide();
   }
@@ -163,6 +163,7 @@ class PlayerController {
 
   play(song) {
     this.paused = false;
+    $("#footer").show();
     $("#footer").html(
       `
       <audio controls autoplay>
