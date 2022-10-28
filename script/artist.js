@@ -29,7 +29,10 @@ class Artist {
     Object.entries(this.albums).forEach(([title, songs]) => {
       $("#albums").append(this.albumRender(title, songs));
     });
-    Object.entries(this.possibleSongs).forEach(([index, details]) => {
+    const artistSongs = this.possibleSongs.filter(
+      (song) => song.artist === this.artist
+    );
+    Object.entries(artistSongs).forEach(([index, details]) => {
       $("#songs").append(this.songRender(index, details.title, details.album));
     });
   }
