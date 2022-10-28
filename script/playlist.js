@@ -133,6 +133,12 @@ class UsePlaylist {
           onclick="ctrl.likeSong('${id}')"
           style="cursor: pointer"
         />
+        <span
+          class="material-symbols-rounded"
+          onclick="player.setSong('${id}')"
+        >
+          play_circle
+        </span>
         <div class="actions">
           <span 
             class="material-symbols-rounded"

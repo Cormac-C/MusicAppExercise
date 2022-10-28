@@ -46,7 +46,7 @@ try {
     $("#logout").hide();
     $("#profile").hide();
     $("#account").hide();
-    $("#footer").hide();
+    // $("#footer > #sign-up-message").hide();
   } else {
     $("#header-search").hide();
   }
@@ -59,19 +59,34 @@ if (!localStorage.getItem("songs")) {
     "songs",
     JSON.stringify([
       {
-        title: "Superstition",
-        artist: "Stevie Wonder",
-        album: "Talking Book",
+        title: "What's the Difference",
+        artist: "Dr. Dre",
+        album: "2001",
+        file: "What's the Difference.mp3",
       },
       {
-        title: "Sir Duke",
-        artist: "Stevie Wonder",
-        album: "Songs in the Key of Life",
+        title: "Mob Ties",
+        artist: "Drake",
+        album: "Scorpion",
+        file: "Mob Ties.mp3",
       },
       {
-        title: "Signed, Sealed, Delivered (I'm Yours)",
-        artist: "Stevie Wonder",
-        album: "Signed, Sealed, Delivered",
+        title: "G.O.M.D.",
+        artist: "J. Cole",
+        album: "2014 Forest Hill Drive",
+        file: "GOMD.mp3",
+      },
+      {
+        title: "Ether",
+        artist: "Nas",
+        album: "Stillmatic",
+        file: "Ether.mp3",
+      },
+      {
+        title: "POWER",
+        artist: "Kanye",
+        album: "My Beautiful Dark Twisted Fantasy",
+        file: "POWER.mp3",
       },
     ])
   );
@@ -126,4 +141,38 @@ class SearchController {
   }
 }
 
+class PlayerController {
+  constructor() {
+    this.songs = JSON.parse(localStorage.getItem("songs"));
+    this.reset();
+  }
+  
+  reset() {
+    this.paused = true;
+    const songID = localStorage.getItem("CURRENT-SONG");
+    if (songID) {
+      this.setSong(songID);
+    }
+  }
+
+  setSong(id) {
+    this.currentSong = id;
+    localStorage.setItem("CURRENT-SONG", id);
+    this.play(this.songs[id]);
+  }
+
+  play(song) {
+    this.paused = false;
+    $("#footer").html(
+      `
+      <audio controls autoplay>
+        <source src="images/${song.file}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      `
+    )
+  }
+}
+
 const search = new SearchController();
+const player = new PlayerController();
