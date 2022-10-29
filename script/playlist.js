@@ -5,43 +5,51 @@ class UsePlaylist {
 
   reset() {
     const urlParams = new URLSearchParams(window.location.search);
-    this.ID = urlParams.get('ID');
-    this.type = urlParams.get('type') ?? "user-playlist";
+    this.ID = urlParams.get("ID");
+    this.type = urlParams.get("type") ?? "user-playlist";
     this.editable = false;
     this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
-    this.likedSongs = JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]");
+    this.likedSongs = JSON.parse(
+      localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
+    );
 
     switch (this.type) {
       case "album":
-        this.playlist = this.getAlbum(urlParams.get('artist'));
+        this.playlist = this.getAlbum(urlParams.get("artist"));
         break;
       case "liked":
         this.playlist = {
           title: "Liked Songs",
           cover: "",
-          songs: this.likedSongs
+          songs: this.likedSongs,
         };
         break;
       case "new-playlist":
-        const newPlaylists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
+        const newPlaylists = JSON.parse(
+          localStorage.getItem("USER-PLAYLISTS") ?? "[]"
+        );
         newPlaylists.push({
           title: "New Playlist",
           cover: "album14.jpg",
           songs: [],
         });
         localStorage.setItem("USER-PLAYLISTS", JSON.stringify(newPlaylists));
-        location.href = `playlist.html?type=user-playlist&ID=${newPlaylists.length - 1}`;
+        location.href = `playlist.html?type=user-playlist&ID=${
+          newPlaylists.length - 1
+        }`;
         break;
       case "user-playlist":
         this.editable = true;
-        const playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
+        const playlists = JSON.parse(
+          localStorage.getItem("USER-PLAYLISTS") ?? "[]"
+        );
         this.playlist = playlists[this.ID];
         break;
       default:
         this.error("Unknown action type");
         return;
-      }
-        
+    }
+
     if (this.playlist) {
       this.render();
     } else {
@@ -57,7 +65,7 @@ class UsePlaylist {
       cover: this.cover,
       songs: this.possibleSongs.reduce((playlist, song, i) => {
         if (song.artist === artist && song.album === album) {
-            playlist.push(i);
+          playlist.push(i);
         }
         return playlist;
       }, []),
@@ -90,7 +98,9 @@ class UsePlaylist {
 
   save() {
     if (this.type === "user-playlist") {
-      let playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
+      let playlists = JSON.parse(
+        localStorage.getItem("USER-PLAYLISTS") ?? "[]"
+      );
       playlists.splice(this.ID, 1, this.playlist); // Replace playlist with a new one
       localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
     }
@@ -113,8 +123,7 @@ class UsePlaylist {
 
   songRender(id, index) {
     const { artist, title } = this.possibleSongs[id];
-    return (
-      `
+    return `
       <div id="${id}" class="song">
         <span 
           class="handle material-symbols-rounded"
@@ -128,7 +137,9 @@ class UsePlaylist {
           <p>${artist}</p>
         </div>
         <img
-          src="images/heart-${this.likedSongs.includes(id) ? 'full' : 'empty'}.svg"
+          src="images/heart-${
+            this.likedSongs.includes(id) ? "full" : "empty"
+          }.svg"
           height="24px"
           onclick="ctrl.likeSong('${id}')"
           style="cursor: pointer"
@@ -148,8 +159,7 @@ class UsePlaylist {
           </span>
         </div>
       </div>
-      `
-    );
+      `;
   }
 
   songSearch(event) {
@@ -158,12 +168,16 @@ class UsePlaylist {
     if (query !== "") {
       // Find songs where the title matches that aren't in the playlist
       const songMatches = Object.entries(this.possibleSongs).filter(
-        ([id, {title}]) => title.includes(query) && !this.playlist.songs.includes(id)
+        ([id, { title }]) =>
+          title.toLowerCase().includes(query.toLowerCase()) &&
+          !this.playlist.songs.includes(id)
       );
       // TODO: Find songs where the artist matches the query
       // Add the matches to the DOM
-      songMatches.forEach(([id, {title, artist}]) => {
-        $("#suggested-songs").append(`<p onclick="ctrl.addSong('${id}');">${title}: ${artist}</p>`);
+      songMatches.forEach(([id, { title, artist }]) => {
+        $("#suggested-songs").append(
+          `<p onclick="ctrl.addSong('${id}');">${title}: ${artist}</p>`
+        );
       });
     }
   }
@@ -193,8 +207,8 @@ class UsePlaylist {
 
   likeSong(id) {
     if (this.likedSongs.includes(id)) {
-      this.likedSongs = this.likedSongs.filter(song => song != id);
-    } else{
+      this.likedSongs = this.likedSongs.filter((song) => song != id);
+    } else {
       this.likedSongs.push(id);
     }
     localStorage.setItem("USER-LIKED-SONGS", JSON.stringify(this.likedSongs));
@@ -204,14 +218,16 @@ class UsePlaylist {
   deletePlaylist() {
     console.log("Hello!");
     if (this.editable) {
-      const playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
+      const playlists = JSON.parse(
+        localStorage.getItem("USER-PLAYLISTS") ?? "[]"
+      );
       playlists.splice(this.ID, 1);
       localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
       location.href = "index.html";
     }
   }
 
-  error(msg="Uh oh! Something went wrong :(") {
+  error(msg = "Uh oh! Something went wrong :(") {
     $("#playlist-title").html(msg);
   }
 }

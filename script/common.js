@@ -107,7 +107,7 @@ class SearchController {
     if (this.query !== "") {
       // Find songs where the title matches that aren't in the playlist
       const songMatches = Object.entries(this.songs).filter(([id, { title }]) =>
-        title.includes(this.query)
+        title.toLowerCase().includes(this.query.toLowerCase())
       );
       // Add the matches to the DOM
       songMatches.forEach(([id, { title, artist }]) => {
