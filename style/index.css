@@ -4,7 +4,7 @@
   max-width: 100vw;
   margin: 0px;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 4fr 1fr;
   overflow-y: hidden;
   font-family: sans-serif;
 }
@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  max-height: 100vh;
+  height: 100vh;
   background-color: aliceblue;
   box-shadow: 2px 2px 4px #9ab;
 }
@@ -40,7 +40,7 @@
   padding-right: 5px;
 }
 #spacer {
-  flex: 1;
+  flex: 0.9;
 }
 header {
   padding: 20px;
