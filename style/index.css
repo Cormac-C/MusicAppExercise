@@ -159,6 +159,18 @@ footer > div {
   grid-template-columns: repeat(auto-fit, 200px);
 }
 
+.artistLabel {
+  width: 186px;
+  height: 186px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.artistLabel > h5 {
+  font-size: 1rem;
+  margin: 0;
+}
+
 .imageLabel > img {
   width: 140px;
   height: 140px;

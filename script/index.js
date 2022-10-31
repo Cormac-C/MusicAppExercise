@@ -1,24 +1,20 @@
 function playlistRender(playlist, index) {
-  return (
-    `
+  return `
     <button class="imageLabel" onClick="location.href = 'playlist.html?ID=${index}';">
       <img class="playButton" src="images/playButton.png" alt="Icon" />
       <img src="images/${playlist.cover}" alt="Icon" />
       <h5>${playlist.title}</h5>
       <p>${playlist.songs.length} Songs</p>
     </button>
-    `
-  );
+    `;
 }
 
 function artistRender(artist) {
-  return (
-    `
-    <button class="imageLabel" onClick="location.href = 'artist.html?artist=${artist}';">
+  return `
+    <button class="artistLabel" onClick="location.href = 'artist.html?artist=${artist}';">
       <h5>${artist}</h5>
     </button>
-    `
-  );
+    `;
 }
 
 function renderPlaylists() {
