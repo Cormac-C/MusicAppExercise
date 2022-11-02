@@ -63,6 +63,10 @@ footer > div {
   background-color: aliceblue;
   cursor: pointer;
 }
+footer > audio {
+  position: fixed;
+  bottom: 4px;
+}
 
 .topButtons {
   justify-content: flex-end;

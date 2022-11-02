@@ -113,14 +113,14 @@ class SearchController {
       songMatches.forEach(([id, { title, artist }]) => {
         $("#header-search-suggestions").append(
           `
-            <p>
+            <p onclick="player.setSong('${id}')">
               ${title}: ${artist}
               <img
                 src="images/heart-${
                   this.likedSongs.includes(id) ? "full" : "empty"
                 }.svg"
                 height="24px"
-                onclick="search.likeSong('${id}')"
+                onclick="search.likeSong('${id}'); event.stopPropagation();"
                 style="cursor: pointer"
               />
             </p>
@@ -144,34 +144,45 @@ class SearchController {
 class PlayerController {
   constructor() {
     this.songs = JSON.parse(localStorage.getItem("songs"));
-    this.reset();
+    this.queue = [];
+    this.render();
   }
 
-  reset() {
-    this.paused = true;
-    const songID = localStorage.getItem("CURRENT-SONG");
-    if (songID) {
-      this.setSong(songID);
-    }
+  setQueue(ids) {
+    this.queue = ids;
+    console.log(this.queue)
+    this.render();
   }
 
   setSong(id) {
-    this.currentSong = id;
-    localStorage.setItem("CURRENT-SONG", id);
-    this.play(this.songs[id]);
+    this.queue = [id];
+    this.render();
   }
 
-  play(song) {
-    this.paused = false;
-    $("#footer").show();
-    $("#footer").html(
-      `
-      <audio controls autoplay>
+  addToQueue(id) {
+    this.queue.push(id);
+  }
+
+  playNextSong() {
+    this.queue.splice(0, 1);
+    this.render();
+  }
+
+  render() {
+    if (this.queue.length) {
+      const id = this.queue[0];
+      const song = this.songs[id];
+      $("#footer").show();
+      $("#footer").html(
+        `
+        <audio controls autoplay>
         <source src="images/${song.file}" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      `
-    );
+          Your browser does not support the audio element.
+        </audio>
+        `
+      );
+      $("#footer > audio").on("ended", () => this.playNextSong());
+    }
   }
 }
 

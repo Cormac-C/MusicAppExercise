@@ -90,7 +90,7 @@ class UsePlaylist {
     // Get the id of the target and add the moved element to the target's DOM
     const oldPos = ev.dataTransfer.getData("old-position");
     const newPos = $(ev.path[1]).index();
-    const songID = this.playlist.songs.splice(oldPos, 1);
+    const songID = this.playlist.songs.splice(oldPos, 1)[0];
     this.playlist.songs.splice(newPos, 0, songID);
     this.save();
     this.render();
@@ -109,6 +109,7 @@ class UsePlaylist {
   render() {
     $("#songs").html(""); // Reset song list
     $("#playlist-title").val(this.playlist.title);
+    $("#play-playlist").attr("onclick", `player.setQueue([${this.playlist.songs}])`);
     this.playlist.songs.forEach((id, i) => {
       $("#songs").append(this.songRender(id, i));
     });
@@ -124,14 +125,15 @@ class UsePlaylist {
   songRender(id, index) {
     const { artist, title } = this.possibleSongs[id];
     return `
-      <div id="${id}" class="song">
+      <div id="${id}" class="song" onclick="player.setQueue(ctrl.getSongList(${index}))">
         <span 
           class="handle material-symbols-rounded"
           ondragstart="ctrl.handleDragStart(event, ${index})"
           draggable="${this.editable}"
+          onclick="event.stopPropagation()"
         >
-        menu
-      </span>
+          menu
+        </span>
         <div class="info">
           <h3>${title}</h3>
           <p>${artist}</p>
@@ -141,19 +143,13 @@ class UsePlaylist {
             this.likedSongs.includes(id) ? "full" : "empty"
           }.svg"
           height="24px"
-          onclick="ctrl.likeSong('${id}')"
+          onclick="ctrl.likeSong('${id}'); event.stopPropagation()"
           style="cursor: pointer"
         />
-        <span
-          class="material-symbols-rounded"
-          onclick="player.setSong('${id}')"
-        >
-          play_circle
-        </span>
         <div class="actions">
           <span 
             class="material-symbols-rounded"
-            onclick="ctrl.deleteSong(${index})"
+            onclick="ctrl.deleteSong(${index}); event.stopPropagation()"
           >
             delete
           </span>
@@ -195,6 +191,11 @@ class UsePlaylist {
       this.save();
       this.render();
     }
+  }
+
+  // Get all songs in the playlist
+  getSongList(index=0) {
+    return this.playlist.songs.slice(index);
   }
 
   deleteSong(index) {
