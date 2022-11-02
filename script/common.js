@@ -88,6 +88,12 @@ if (!localStorage.getItem("songs")) {
         album: "My Beautiful Dark Twisted Fantasy",
         file: "POWER.mp3",
       },
+      {
+        title: "Black Skinhead (Instrumental)",
+        artist: "Kanye",
+        album: "Yeezus",
+        file: "Black Skinhead (Instrumental).mp3",
+      },
     ])
   );
 }
