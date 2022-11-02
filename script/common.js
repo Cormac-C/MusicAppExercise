@@ -98,6 +98,67 @@ if (!localStorage.getItem("songs")) {
   );
 }
 
+const upcomingReleases = [
+  {
+    artist: "Bruce Springsteen",
+    title: "Only the Strong Survive",
+    releaseDate: new Date("2022-11-11"),
+  },
+  {
+    artist: "BROCKHAMPTON",
+    title: "The Family",
+    releaseDate: new Date("2022-11-18"),
+  },
+  {
+    artist: "Nickelback",
+    title: "Get Rollin'",
+    releaseDate: new Date("2022-11-18"),
+  },
+  {
+    artist: "Stormzy",
+    title: "This Is What I Mean",
+    releaseDate: new Date("2022-11-25"),
+  },
+];
+
+function renderReleases(releases) {
+  setInterval(
+    function (releases) {
+      $("#releases").html("");
+      releases.forEach((release) => {
+        $("#releases").append(releaseRender(release));
+      });
+    },
+    1000,
+    releases
+  );
+}
+
+function releaseRender(release) {
+  var timeDifference = (release.releaseDate - new Date()) / 1000,
+    ss = Math.floor(timeDifference % 60)
+      .toString()
+      .padStart(2, "0"),
+    ms = Math.floor((timeDifference / 60) % 60)
+      .toString()
+      .padStart(2, "0"),
+    hs = Math.floor((timeDifference / 3600) % 24)
+      .toString()
+      .padStart(2, "0"),
+    ds = Math.floor(timeDifference / 86400).toString();
+  const text = `${ds} Days ${hs}:${ms}:${ss}`;
+  return `
+    <p>
+      <strong>${release.title}</strong> - 
+      ${release.artist}
+      <br/>
+      ${text}
+    <\p>
+  `;
+}
+
+renderReleases(upcomingReleases);
+
 class SearchController {
   constructor() {
     this.songs = JSON.parse(localStorage.getItem("songs"));
@@ -158,7 +219,7 @@ class PlayerController {
     this.renderController();
   }
 
-  setQueue(ids, newIndex=0) {
+  setQueue(ids, newIndex = 0) {
     this.queue = ids;
     this.songIndex = newIndex;
     this.togglePlayStatus(true);
@@ -193,7 +254,7 @@ class PlayerController {
     // console.log($("#footer > audio"));
   }
 
-  togglePlayStatus(status=undefined) {
+  togglePlayStatus(status = undefined) {
     if (this.queue.length) {
       this.playing = status ?? !this.playing;
     }
@@ -213,7 +274,7 @@ class PlayerController {
             skip_previous
           </span>
           <span class="material-symbols-rounded" onclick="player.togglePlayStatus()">
-            ${this.playing ? 'pause' : 'play_arrow'}
+            ${this.playing ? "pause" : "play_arrow"}
           </span>
           <span class="material-symbols-rounded" onclick="player.playNextSong()">
             skip_next
