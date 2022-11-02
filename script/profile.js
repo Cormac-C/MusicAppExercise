@@ -74,9 +74,22 @@ function renderLikedSongs() {
     localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
   );
   $("#likedsongs").html("");
-  console.log(likedSongs, "liked");
   likedSongs.forEach((id, i) => {
     $("#likedsongs").append(songRender(id, i, true));
+  });
+}
+
+function renderMostPlayedSongs() {
+  const likedSongs = JSON.parse(
+    localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
+  );
+  console.log(likedSongs, "liked");
+  const mostplayed = [0, 3, 4]; //Currently dummy data, idk if we have to actually implement
+  $("#topsongs").html("");
+  mostplayed.forEach((id, i) => {
+    const liked = likedSongs.includes(id + "");
+    console.log(liked);
+    $("#topsongs").append(songRender(id, i, liked));
   });
 }
 
@@ -84,6 +97,7 @@ function init() {
   renderPlaylists();
   renderArtists();
   renderLikedSongs();
+  renderMostPlayedSongs();
 }
 
 init();
