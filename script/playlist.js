@@ -109,7 +109,7 @@ class UsePlaylist {
     $("#playlist-title").val(this.playlist.title);
     const songs = this.playlist.songs;
     $("#play-playlist").click(function() {
-      player.setQueue(songs); // function runs in the global scope
+      player.setQueue(songs, 0); // function runs in the global scope
     });
     this.playlist.songs.forEach((id, i) => {
       $("#songs").append(this.songRender(id, i));
@@ -132,7 +132,7 @@ class UsePlaylist {
   songRender(id, index) {
     const { artist, title } = this.possibleSongs[id];
     return `
-      <div id="${id}" class="song" onclick="player.setQueue(ctrl.getSongList(${index}))">
+      <div id="${id}" class="song" onclick="player.setQueue([${this.playlist.songs}], ${index})">
         <span 
           class="handle material-symbols-rounded"
           ondragstart="ctrl.handleDragStart(event, ${index})"
@@ -205,11 +205,6 @@ class UsePlaylist {
       this.playlist.songs.push(id);
       this.render();
     }
-  }
-
-  // Get all songs in the playlist
-  getSongList(index=0) {
-    return this.playlist.songs.slice(index);
   }
 
   deleteSong(index) {

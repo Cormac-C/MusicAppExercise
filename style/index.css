@@ -63,9 +63,14 @@ footer > div {
   background-color: aliceblue;
   cursor: pointer;
 }
-footer > audio {
+footer > #controls {
   position: fixed;
   bottom: 4px;
+  height: min-content;
+  background: lightgrey;
+  border-radius: 80px;
+  border: none;
+  padding: 2px 8px;
 }
 
 .topButtons {

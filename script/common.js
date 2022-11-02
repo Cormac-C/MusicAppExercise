@@ -46,7 +46,7 @@ try {
     $("#logout").hide();
     $("#profile").hide();
     $("#account").hide();
-    $("#footer").hide();
+    $("#sign-up-message").hide();
   } else {
     $("#header-search").hide();
   }
@@ -151,17 +151,22 @@ class PlayerController {
   constructor() {
     this.songs = JSON.parse(localStorage.getItem("songs"));
     this.queue = [];
-    this.render();
+    this.songIndex = undefined;
+    this.playing = false;
+    $("#footer > audio").on("ended", () => this.playNextSong());
+    $("#footer > audio").on("timeupdate", () => this.updateStatus());
+    this.renderController();
   }
 
-  setQueue(ids) {
+  setQueue(ids, newIndex=0) {
     this.queue = ids;
-    this.render();
+    this.songIndex = newIndex;
+    this.togglePlayStatus(true);
+    this.updateAudio();
   }
 
   setSong(id) {
-    this.queue = [id];
-    this.render();
+    this.setQueue([id]);
   }
 
   addToQueue(id) {
@@ -169,24 +174,67 @@ class PlayerController {
   }
 
   playNextSong() {
-    this.queue.splice(0, 1);
-    this.render();
+    if (this.songIndex < this.queue.length - 1) {
+      this.songIndex += 1;
+    }
+    this.togglePlayStatus(true);
+    this.updateAudio();
   }
 
-  render() {
+  playPreviousSong() {
+    if (this.songIndex > 0) {
+      this.songIndex -= 1;
+    }
+    this.togglePlayStatus(true);
+    this.updateAudio();
+  }
+
+  updateStatus() {
+    // console.log($("#footer > audio"));
+  }
+
+  togglePlayStatus(status=undefined) {
     if (this.queue.length) {
-      const id = this.queue[0];
+      this.playing = status ?? !this.playing;
+    }
+    if (this.playing) {
+      $("#footer > audio").trigger("play");
+    } else {
+      $("#footer > audio").trigger("pause");
+    }
+    this.renderController();
+  }
+
+  renderController() {
+    if (this.queue.length) {
+      $("#footer").append(`
+        <div id="controls">
+          <span class="material-symbols-rounded" onclick="player.playPreviousSong()">
+            skip_previous
+          </span>
+          <span class="material-symbols-rounded" onclick="player.togglePlayStatus()">
+            ${this.playing ? 'pause' : 'play_arrow'}
+          </span>
+          <span class="material-symbols-rounded" onclick="player.playNextSong()">
+            skip_next
+          </span>
+        </div>
+      `);
+    } else {
+      $("#controls").hide("");
+    }
+  }
+
+  updateAudio() {
+    if (this.queue.length) {
+      const id = this.queue[this.songIndex];
       const song = this.songs[id];
-      $("#footer").show();
-      $("#footer").html(
-        `
-        <audio controls autoplay>
+      $("#footer > audio").replaceWith(`
+        <audio autoplay>
           <source src="images/${song.file}" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
-        `
-      );
-      $("#footer > audio").on("ended", () => this.playNextSong());
+      `);
     }
   }
 }
