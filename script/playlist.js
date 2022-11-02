@@ -92,7 +92,6 @@ class UsePlaylist {
     const newPos = $(ev.path[1]).index();
     const songID = this.playlist.songs.splice(oldPos, 1)[0];
     this.playlist.songs.splice(newPos, 0, songID);
-    this.save();
     this.render();
   }
 
@@ -116,6 +115,7 @@ class UsePlaylist {
     if (!this.editable) {
       $("#playlist-title").replaceWith(`<h2>${this.playlist.title}</h2>`);
       $("#search").hide();
+      $("#save-playlist").hide();
       $("#delete-playlist").hide();
       $(".actions").hide();
       $(".handle").hide();
@@ -181,14 +181,12 @@ class UsePlaylist {
   changeTitle(event) {
     if (this.editable) {
       this.playlist.title = event.target.value;
-      this.save();
     }
   }
 
   addSong(id) {
     if (this.editable && !this.playlist.songs.includes(id)) {
       this.playlist.songs.push(id);
-      this.save();
       this.render();
     }
   }
@@ -201,7 +199,6 @@ class UsePlaylist {
   deleteSong(index) {
     if (this.editable && index < this.playlist.songs.length) {
       this.playlist.songs.splice(index, 1);
-      this.save();
       this.render();
     }
   }

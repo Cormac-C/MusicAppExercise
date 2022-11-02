@@ -1,3 +1,18 @@
+.content-heading {
+  display: flex;
+  align-items: center;
+}
+#playlist-title {
+  border: none;
+  font-size: 2rem;
+  flex: 1;
+}
+#play-playlist, #save-playlist, #delete-playlist {
+  font-size: 2rem;
+  margin: .5rem;
+  cursor: pointer;
+}
+
 #songs {
   display: flex;
   flex-direction: column;
@@ -32,10 +47,6 @@
   opacity: 1;
 }
 
-#playlist-title {
-  border: none;
-  font-size: 2rem;
-}
-#delete-playlist {
-  cursor: pointer;
+#search {
+
 }
