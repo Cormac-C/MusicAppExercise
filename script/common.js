@@ -5,7 +5,7 @@ let goToAccount = () => {
 };
 
 let goToProfile = () => {
-  location.href = "index.html";
+  location.href = "profile.html";
 };
 
 let logout = () => {
