@@ -27,7 +27,8 @@ function renderPlaylists() {
   }
 }
 
-function renderArtists() {
+function renderMostPlayedArtists() {
+  const topArtists = ["Drake", "J. Cole", "Kanye"]; //Currently dummy data, idk if we have to actually implement
   const songs = JSON.parse(localStorage.getItem("songs") ?? "[]");
   const artists = songs.reduce((artists, song) => {
     if (!artists.has(song.artist)) {
@@ -35,13 +36,10 @@ function renderArtists() {
     }
     return artists;
   }, new Set());
-
   $("#artists").html("");
-  if (artists.size) {
-    artists.forEach((artist) => {
-      $("#artists").append(artistRender(artist));
-    });
-  }
+  topArtists.forEach((artist) => {
+    $("#artists").append(artistRender(artist));
+  });
 }
 
 function songRender(id, index, liked) {
@@ -93,7 +91,7 @@ function renderMostPlayedSongs() {
 
 function init() {
   renderPlaylists();
-  renderArtists();
+  renderMostPlayedArtists();
   renderLikedSongs();
   renderMostPlayedSongs();
 }
