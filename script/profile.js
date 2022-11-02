@@ -83,12 +83,10 @@ function renderMostPlayedSongs() {
   const likedSongs = JSON.parse(
     localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
   );
-  console.log(likedSongs, "liked");
   const mostplayed = [0, 3, 4]; //Currently dummy data, idk if we have to actually implement
   $("#topsongs").html("");
   mostplayed.forEach((id, i) => {
     const liked = likedSongs.includes(id + "");
-    console.log(liked);
     $("#topsongs").append(songRender(id, i, liked));
   });
 }
