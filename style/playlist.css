@@ -10,12 +10,12 @@
   align-items: center;
   border: 1px solid grey;
   border-radius: 8px;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   cursor: pointer;
 }
 .song > .info {
   flex: 1;
-  margin: .5rem;
+  margin: 0.5rem;
 }
 .song > .info > * {
   margin: 0;
@@ -27,7 +27,8 @@
   cursor: grab;
   opacity: 0;
 }
-.song:hover > .actions, .song:hover > .handle {
+.song:hover > .actions,
+.song:hover > .handle {
   opacity: 1;
 }
 
@@ -37,8 +38,4 @@
 }
 #delete-playlist {
   cursor: pointer;
-}
-
-#search {
-
 }
