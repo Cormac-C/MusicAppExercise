@@ -1,4 +1,46 @@
-const likedSongs = JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]");
+const urlParams = new URLSearchParams(window.location.search);
+console.log(urlParams, "url");
+const user = urlParams.get("user");
+console.log(user, "user");
+//Dummy data land
+const users = [
+  {
+    name: "James",
+    likedSongs: [0, 1, 2],
+    mostplayed: [2, 3, 1],
+    topArtists: ["Nas", "Dr. Dre"],
+    followedUsers: [],
+  },
+  {
+    name: "Samantha",
+    likedSongs: [0, 3, 2],
+    mostplayed: [4, 0, 3],
+    topArtists: ["J. Cole", "Dr. Dre"],
+    followedUsers: [],
+  },
+  {
+    name: "Brad",
+    likedSongs: [3, 4, 2],
+    mostplayed: [3, 2, 1],
+    topArtists: ["Nas", "Drake"],
+    followedUsers: [],
+  },
+];
+const userIndex = users.findIndex((u) => u.name === user);
+console.log(userIndex, "userIndex");
+const likedSongs =
+  userIndex === -1
+    ? JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]")
+    : users[userIndex].likedSongs;
+const mostplayed = userIndex === -1 ? [0, 3, 4] : users[userIndex].mostplayed;
+const topArtists =
+  userIndex === -1
+    ? ["Drake", "J. Cole", "Kanye"]
+    : users[userIndex].topArtists;
+const followedUsers =
+  userIndex === -1
+    ? ["James", "Samantha", "Brad"]
+    : users[userIndex].followedUsers;
 
 function playlistRender(playlist, index) {
   return `
@@ -19,6 +61,14 @@ function artistRender(artist) {
       `;
 }
 
+function userRender(user) {
+  return `
+        <button class="artistLabel" onClick="location.href = 'profile.html?user=${user}';">
+          <h5>${user}</h5>
+        </button>
+        `;
+}
+
 function renderPlaylists() {
   const playlists = JSON.parse(localStorage.getItem("USER-PLAYLISTS") ?? "[]");
   $("#playlists").html("");
@@ -30,7 +80,6 @@ function renderPlaylists() {
 }
 
 function renderMostPlayedArtists() {
-  const topArtists = ["Drake", "J. Cole", "Kanye"]; //Currently dummy data, idk if we have to actually implement
   $("#artists").html("");
   topArtists.forEach((artist) => {
     $("#artists").append(artistRender(artist));
@@ -70,11 +119,17 @@ function renderLikedSongs() {
 }
 
 function renderMostPlayedSongs() {
-  const mostplayed = [0, 3, 4]; //Currently dummy data, idk if we have to actually implement
   $("#topsongs").html("");
   mostplayed.forEach((id, i) => {
     const liked = likedSongs.includes(id + "");
     $("#topsongs").append(songRender(id, i, liked));
+  });
+}
+
+function renderFollowedUsers() {
+  $("#users").html("");
+  followedUsers.forEach((user) => {
+    $("#users").append(userRender(user));
   });
 }
 
@@ -83,6 +138,7 @@ function init() {
   renderMostPlayedArtists();
   renderLikedSongs();
   renderMostPlayedSongs();
+  renderFollowedUsers();
 }
 
 init();
