@@ -44,9 +44,46 @@ function renderArtists() {
   }
 }
 
+function songRender(id, index, liked) {
+  const possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
+  const { artist, title } = possibleSongs[id];
+  return `
+      <div id="${id}" class="song">
+        <div class="info">
+          <h3>${title}</h3>
+          <p>${artist}</p>
+        </div>
+        <img
+          src="images/heart-${liked ? "full" : "empty"}.svg"
+          height="24px"
+          onclick="ctrl.likeSong('${id}')"
+          style="cursor: pointer"
+        />
+        <span
+          class="material-symbols-rounded"
+          onclick="player.setSong('${id}')"
+        >
+          play_circle
+        </span>
+      </div>
+    `;
+}
+
+function renderLikedSongs() {
+  const likedSongs = JSON.parse(
+    localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
+  );
+  $("#likedsongs").html("");
+  console.log(likedSongs, "liked");
+  likedSongs.forEach((id, i) => {
+    $("#likedsongs").append(songRender(id, i, true));
+  });
+}
+
 function init() {
   renderPlaylists();
   renderArtists();
+  renderLikedSongs();
 }
 
 init();
