@@ -79,10 +79,9 @@ Misc
 ### Remaining Functionality Work
 2. Playback control - add forward and back skip buttons - D
 3. Playlist page - check the drag and drop -D
-4. Create Playlist page - add a save button, don't create playlist until it is saved -D
-5. Right column - work on the countdowns, idk what the logged in behaviour is? -C
-6. Add right column to login page, check others -C
-7. Profile picture missing - fix missing image -C
+4. Right column - work on the countdowns, idk what the logged in behaviour is? -C
+5. Add right column to login page, check others -C
+6. Profile picture missing - fix missing image -C
 
 ### Remaining Styling Needed
 1. Check mobile and tablet responsiveness - both

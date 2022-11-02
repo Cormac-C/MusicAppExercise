@@ -8,6 +8,7 @@ class UsePlaylist {
     this.ID = urlParams.get("ID");
     this.type = urlParams.get("type") ?? "user-playlist";
     this.editable = false;
+    this.edited = false;
     this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
     this.likedSongs = JSON.parse(
       localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
@@ -24,26 +25,22 @@ class UsePlaylist {
           songs: this.likedSongs,
         };
         break;
-      case "new-playlist":
-        const newPlaylists = JSON.parse(
-          localStorage.getItem("USER-PLAYLISTS") ?? "[]"
-        );
-        newPlaylists.push({
-          title: "New Playlist",
-          cover: "album14.jpg",
-          songs: [],
-        });
-        localStorage.setItem("USER-PLAYLISTS", JSON.stringify(newPlaylists));
-        location.href = `playlist.html?type=user-playlist&ID=${
-          newPlaylists.length - 1
-        }`;
-        break;
       case "user-playlist":
         this.editable = true;
         const playlists = JSON.parse(
           localStorage.getItem("USER-PLAYLISTS") ?? "[]"
         );
         this.playlist = playlists[this.ID];
+        console.log(this.playlist);
+
+        if (this.playlist === undefined) {
+          this.ID = playlists.length;
+          this.playlist = {
+            title: "New Playlist",
+            cover: "album14.jpg",
+            songs: [],
+          };
+        }
         break;
       default:
         this.error("Unknown action type");
@@ -91,6 +88,7 @@ class UsePlaylist {
     const oldPos = ev.dataTransfer.getData("old-position");
     const newPos = $(ev.path[1]).index();
     const songID = this.playlist.songs.splice(oldPos, 1)[0];
+    this.edited = true;
     this.playlist.songs.splice(newPos, 0, songID);
     this.render();
   }
@@ -102,16 +100,27 @@ class UsePlaylist {
       );
       playlists.splice(this.ID, 1, this.playlist); // Replace playlist with a new one
       localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
+      this.edited = false;
+      this.render();
     }
   }
 
   render() {
     $("#songs").html(""); // Reset song list
     $("#playlist-title").val(this.playlist.title);
-    $("#play-playlist").attr("onclick", `player.setQueue([${this.playlist.songs}])`);
+    const songs = this.playlist.songs;
+    $("#play-playlist").click(function() {
+      player.setQueue(songs);
+    });
     this.playlist.songs.forEach((id, i) => {
       $("#songs").append(this.songRender(id, i));
     });
+    if (this.edited) {
+      $("#save-playlist").show();
+    } else {
+      $("#save-playlist").hide();
+
+    }
     if (!this.editable) {
       $("#playlist-title").replaceWith(`<h2>${this.playlist.title}</h2>`);
       $("#search").hide();
@@ -180,12 +189,15 @@ class UsePlaylist {
 
   changeTitle(event) {
     if (this.editable) {
+      this.edited = true;
       this.playlist.title = event.target.value;
+      this.render();
     }
   }
 
   addSong(id) {
     if (this.editable && !this.playlist.songs.includes(id)) {
+      this.edited = true;
       this.playlist.songs.push(id);
       this.render();
     }
@@ -198,6 +210,7 @@ class UsePlaylist {
 
   deleteSong(index) {
     if (this.editable && index < this.playlist.songs.length) {
+      this.edited = true;
       this.playlist.songs.splice(index, 1);
       this.render();
     }
@@ -218,7 +231,7 @@ class UsePlaylist {
       const playlists = JSON.parse(
         localStorage.getItem("USER-PLAYLISTS") ?? "[]"
       );
-      playlists.splice(this.ID, 1);
+      playlists.splice(this.ID, 1); // TODO
       localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
       location.href = "index.html";
     }
