@@ -7,45 +7,67 @@ class Artist {
     const urlParams = new URLSearchParams(window.location.search);
     this.artist = urlParams.get("artist");
     this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
+    this.likedSongs = JSON.parse(
+      localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
+    );
 
     if (this.possibleSongs) {
-      this.albums = this.possibleSongs.reduce((albums, song) => {
-        if (song.artist === this.artist) {
-          if (!Object.keys(albums).includes(song.album)) {
-            albums[song.album] = [];
-          }
-          albums[song.album].push(song);
-        }
-        return albums;
-      }, {});
+      this.albums = this.getAlbums();
+      this.songs = 
       this.render();
     } else {
       this.error();
     }
   }
 
+  getAlbums() {
+    return this.possibleSongs.reduce((albums, song) => {
+      if (song.artist === this.artist) {
+        if (!Object.keys(albums).includes(song.album)) {
+          albums[song.album] = [];
+        }
+        albums[song.album].push(song);
+      }
+      return albums;
+    }, {});
+  }
+
+  getSongList(index=0) {
+    return Object.entries(this.possibleSongs).map(
+      ([id, song]) => song.artist === this.artist ? id : null
+    ).filter((id) => id !== null).slice(index);
+  }
+
   render() {
+    $("#albums").html("");
+    $("#songs").html("");
     $("#artist-name").html(this.artist);
     Object.entries(this.albums).forEach(([title, songs]) => {
       $("#albums").append(this.albumRender(title, songs));
     });
-    const artistSongs = this.possibleSongs.filter(
-      (song) => song.artist === this.artist
-    );
-    Object.entries(artistSongs).forEach(([index, details]) => {
-      $("#songs").append(this.songRender(index, details.title, details.album));
+    this.getSongList().forEach((id, index) => {
+      $("#songs").append(this.songRender(id, index));
     });
   }
 
-  songRender(index, title, album) {
+  songRender(id, index) {
+    const { artist, title } = this.possibleSongs[id];
     return `
-      <div id="${index}" class="song">
+      <div id="${id}" class="song" onclick="player.setQueue(ctrl.getSongList(${index}))">
         <div class="info">
           <h3>${title}</h3>
-          <p>${album}</p>
+          <p>${artist}</p>
         </div>
+        <img
+          src="images/heart-${
+            this.likedSongs.includes(id) ? "full" : "empty"
+          }.svg"
+          height="24px"
+          onclick="ctrl.likeSong('${id}'); event.stopPropagation()"
+          style="cursor: pointer"
+        />
       </div>
-    `;
+      `;
   }
 
   albumRender(title, songs) {
@@ -57,6 +79,16 @@ class Artist {
         <p>${songs.length} Songs</p>
       </button>
       `;
+  }
+
+  likeSong(id) {
+    if (this.likedSongs.includes(id)) {
+      this.likedSongs = this.likedSongs.filter((song) => song != id);
+    } else {
+      this.likedSongs.push(id);
+    }
+    localStorage.setItem("USER-LIKED-SONGS", JSON.stringify(this.likedSongs));
+    this.reset(); // Overkill, but easy
   }
 
   error() {
