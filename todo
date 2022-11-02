@@ -36,11 +36,12 @@ Account page - Done, could use styling
 
 Profile page "No playlists created by other users" - I think we need to build this page
 - Music options (all clickable to open a corresponding page)
-  - most listened to artists (-> Artist page)
-  - most played songs (-> Playlist page. uneditable?)
-  - songs liked (-> Playlist page. uneditable?)
-  - playlists created by the user (-> Playlist page)
-  - and the list of other users following the user (-> Profile page of another user)
+  - most listened to artists (-> Artist page) - done with dummy data
+  - most played songs (-> Playlist page. uneditable?) - done with dummy data
+  - songs liked (-> Playlist page. uneditable?) - done
+  - playlists created by the user (-> Playlist page) - done sort of, shows all created playlists. Maybe add an author to playlists? doesn't seem too important
+  - and the list of other users following the user (-> Profile page of another user) - done with dummy data
+  - TODO handle empty sections
 
 Artist page - Need to make songs playable, liking songs in album doesn't work
 - List of published albums
