@@ -217,8 +217,7 @@ class UsePlaylist {
   }
 
   deletePlaylist() {
-    console.log("Hello!");
-    if (this.editable) {
+    if (this.editable & confirm("Are you sure you wish to delete this playlist?")) {
       const playlists = JSON.parse(
         localStorage.getItem("USER-PLAYLISTS") ?? "[]"
       );
