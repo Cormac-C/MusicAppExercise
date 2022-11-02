@@ -1,9 +1,9 @@
-Login page Working
+Login page - Done, could use styling
 - Form (user name, password + a button to submit)
 - Log in via Facebook / Google (not functional)
 - Appropriate error messages
 
-Signup page "Kinda done, initial implementation. Would benefit from polishing"
+Signup page - Done, could use styling, maybe add a preview for the profile picture
 - Form
   - Username (Required)
   - Password (maximum? 8 characters. allowed characters: letters [a-z] and digits [0-9]) (Required)
@@ -19,22 +19,22 @@ Signup page "Kinda done, initial implementation. Would benefit from polishing"
   - If there is a cookie with the same email, notify the user an account exists with that email
 - Appropriate error messages
 
-Updated header
-- Login/signup if the user is not logged in
-- User's profile image if the user is logged in
+Updated header - Need to add play functionality from seach bar
+- Login/signup if the user is not logged in - Done
+- User's profile image if the user is logged in - Done
   - Clickable dropdown with options (account, profile, logout)
   - Logout confirmation modal - Working
 - a song search engine (functional)
   - Actually returns a list of songs
-  - Button to start playing it
+  - Button to start playing it - Need this functionality, can't currently play from the search bar
   - Like button for each song
 
-Account page Done
+Account page - Done, could use styling
 - User's account info (from signup)
 - Able to modify all their data
 - Saved changes are reflected in the corresponding cookie
 
-Profile page "No playlists created by other users"
+Profile page "No playlists created by other users" - I think we need to build this page
 - Music options (all clickable to open a corresponding page)
   - most listened to artists (-> Artist page)
   - most played songs (-> Playlist page. uneditable?)
@@ -42,41 +42,56 @@ Profile page "No playlists created by other users"
   - playlists created by the user (-> Playlist page)
   - and the list of other users following the user (-> Profile page of another user)
 
-Arist page "No songs yet, just albums"
+Artist page - Need to make songs playable, liking songs in album doesn't work
 - List of published albums
 - Songs
 
-Playlist page "Done but ugly"
+Playlist page - Needs styling, drag and drop isn't really working, add a confirmation modal for deleting the whole playlist
 - List of songs included
 - Can change the order by dragging and dropping
 - Deleting songs or the whole playlist
 
-Create Playlist page "Done, doesn't include a save button"
+Create Playlist page - Needs styling, Add a save button
 - Allows user to create playlists that are added to the user's profile
 - Form with title, song finder, and a save button
 
-Playback control footer
+Playback control footer - Need forward and back buttons, maybe move it up on the page a little bit
 - Anywhere a song appears, it can be played (button appears on hover)
 - Appears while playing a song
 - Pause/play, forward/back, volume controls
 
-Left column "Done"
+Left column - Done
 - Playlist dropdown (list of playlists. -> Playlist page)
 - Create playlist option (-> Create Playlist page)
 
+Right column - Add countdown functionality
+- Not logged in -> latest song and album with countdown
+- Logged in -> I can't find this information in the assignment anywhere
+
 Misc
-- When opening new pages the main structure with the left and right column header will have to be kept constant
-- The tablet and mobile versions will have to be fully functional
-- When logged in the message in the footer will close
-- If you are not logged in, a section with the latest song or album releases will be added in the right column. Each item in this section will have a countdown counter. 
+- When opening new pages the main structure with the left and right column header will have to be kept constant - Done
+- The tablet and mobile versions will have to be fully functional - Need to work on this
+- When logged in the message in the footer will close - Done
 
 
 **************************
-### Remaining Work
-1. Profile Page - basically just index.html rn?
-2. Logout confirmation modal - done
-3. Artist Page - songs - done, not playable yet though
-4. Dedicated user-playlists page?
-5. SONG PLAYING - playback controls
-6. Latest song / countdown right section
-7. Check tablet and mobile
+*Not in order of priority (yet)*
+### Remaining Functionality Work
+1. Profile page - build it, see specs above + documentation
+2. Search bar - make songs playable from results
+3. Artist page - make songs playable, make liking songs possible from album page
+4. Playlist page - add a confirmation modal when deleting the playlist, check the drag and drop
+5. Create Playlist page - add a save button, don't create playlist until it is saved
+6. Playback control - add forward and back skip buttons
+7. Right column - work on the countdowns, idk what the logged in behaviour is?
+
+### Remaining Styling Needed
+1. Login page - make it look better
+2. Signup page - add preview for profile page, make it look better
+3. Account page - make it look better
+4. Artist page - make it look better
+5. Playlist page - make it look better
+6. Create playlist page - make it look better
+7. Playback control - doesn't look bad but maybe move up a bit
+8. Right column - needs styling
+9. Check mobile and tablet responsiveness
