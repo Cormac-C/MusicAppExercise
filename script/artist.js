@@ -58,6 +58,12 @@ class Artist {
           <h3>${title}</h3>
           <p>${artist}</p>
         </div>
+        <span
+          class="material-symbols-rounded"
+          onclick="player.addToQueue('${id}'); event.stopPropagation()"
+        >
+          queue_music
+        </span>
         <img
           src="images/heart-${
             this.likedSongs.includes(id) ? "full" : "empty"

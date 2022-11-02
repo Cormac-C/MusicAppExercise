@@ -156,7 +156,6 @@ class PlayerController {
 
   setQueue(ids) {
     this.queue = ids;
-    console.log(this.queue)
     this.render();
   }
 
@@ -182,7 +181,7 @@ class PlayerController {
       $("#footer").html(
         `
         <audio controls autoplay>
-        <source src="images/${song.file}" type="audio/mpeg">
+          <source src="images/${song.file}" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
         `

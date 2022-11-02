@@ -31,7 +31,6 @@ class UsePlaylist {
           localStorage.getItem("USER-PLAYLISTS") ?? "[]"
         );
         this.playlist = playlists[this.ID];
-        console.log(this.playlist);
 
         if (this.playlist === undefined) {
           this.ID = playlists.length;
@@ -147,6 +146,12 @@ class UsePlaylist {
           <h3>${title}</h3>
           <p>${artist}</p>
         </div>
+        <span
+          class="material-symbols-rounded"
+          onclick="player.addToQueue('${id}'); event.stopPropagation()"
+        >
+          queue_music
+        </span>
         <img
           src="images/heart-${
             this.likedSongs.includes(id) ? "full" : "empty"
