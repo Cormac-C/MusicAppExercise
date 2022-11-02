@@ -28,7 +28,7 @@ const users = [
 ];
 const userIndex = users.findIndex((u) => u.name === user);
 console.log(userIndex, "userIndex");
-const likedSongs =
+let likedSongs =
   userIndex === -1
     ? JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]")
     : users[userIndex].likedSongs;
@@ -90,23 +90,23 @@ function songRender(id, index, liked) {
   const possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
   const { artist, title } = possibleSongs[id];
   return `
-      <div id="${id}" class="song">
+      <div id="${id}" class="song" onclick="player.setQueue(id)">
         <div class="info">
           <h3>${title}</h3>
           <p>${artist}</p>
         </div>
+        <span
+          class="material-symbols-rounded"
+          onclick="player.addToQueue('${id}'); event.stopPropagation()"
+        >
+          queue_music
+        </span>
         <img
           src="images/heart-${liked ? "full" : "empty"}.svg"
           height="24px"
-          onclick="ctrl.likeSong('${id}')"
+          onclick="likeSong('${id}'); event.stopPropagation()"
           style="cursor: pointer"
         />
-        <span
-          class="material-symbols-rounded"
-          onclick="player.setSong('${id}')"
-        >
-          play_circle
-        </span>
       </div>
     `;
 }
@@ -132,6 +132,16 @@ function renderFollowedUsers() {
     $("#users").append(userRender(user));
   });
   if (followedUsers.length === 0) $("#userTitle").hide();
+}
+
+function likeSong(id) {
+  if (likedSongs.includes(id)) {
+    likedSongs = likedSongs.filter((song) => song != id);
+  } else {
+    likedSongs.push(id);
+  }
+  localStorage.setItem("USER-LIKED-SONGS", JSON.stringify(likedSongs));
+  init();
 }
 
 function init() {
