@@ -41,7 +41,6 @@ Profile page "No playlists created by other users" - I think we need to build th
   - songs liked (-> Playlist page. uneditable?) - done
   - playlists created by the user (-> Playlist page) - done sort of, shows all created playlists. Maybe add an author to playlists? doesn't seem too important
   - and the list of other users following the user (-> Profile page of another user) - done with dummy data
-  - TODO handle empty sections
 
 Artist page - Need to make songs playable, liking songs in album doesn't work
 - List of published albums
@@ -78,7 +77,6 @@ Misc
 **************************
 *In a rough order of priority*
 ### Remaining Functionality Work
-1. Profile page - build it, see specs above + documentation - C
 2. Playback control - add forward and back skip buttons - D
 3. Playlist page - check the drag and drop -D
 4. Create Playlist page - add a save button, don't create playlist until it is saved -D

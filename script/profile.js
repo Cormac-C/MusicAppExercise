@@ -131,6 +131,7 @@ function renderFollowedUsers() {
   followedUsers.forEach((user) => {
     $("#users").append(userRender(user));
   });
+  if (followedUsers.length === 0) $("#userTitle").hide();
 }
 
 function init() {
