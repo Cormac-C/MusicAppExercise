@@ -1,3 +1,5 @@
+const likedSongs = JSON.parse(localStorage.getItem("USER-LIKED-SONGS") ?? "[]");
+
 function playlistRender(playlist, index) {
   return `
       <button class="imageLabel" onClick="location.href = 'playlist.html?ID=${index}';">
@@ -29,13 +31,6 @@ function renderPlaylists() {
 
 function renderMostPlayedArtists() {
   const topArtists = ["Drake", "J. Cole", "Kanye"]; //Currently dummy data, idk if we have to actually implement
-  const songs = JSON.parse(localStorage.getItem("songs") ?? "[]");
-  const artists = songs.reduce((artists, song) => {
-    if (!artists.has(song.artist)) {
-      artists.add(song.artist);
-    }
-    return artists;
-  }, new Set());
   $("#artists").html("");
   topArtists.forEach((artist) => {
     $("#artists").append(artistRender(artist));
@@ -68,9 +63,6 @@ function songRender(id, index, liked) {
 }
 
 function renderLikedSongs() {
-  const likedSongs = JSON.parse(
-    localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
-  );
   $("#likedsongs").html("");
   likedSongs.forEach((id, i) => {
     $("#likedsongs").append(songRender(id, i, true));
@@ -78,9 +70,6 @@ function renderLikedSongs() {
 }
 
 function renderMostPlayedSongs() {
-  const likedSongs = JSON.parse(
-    localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
-  );
   const mostplayed = [0, 3, 4]; //Currently dummy data, idk if we have to actually implement
   $("#topsongs").html("");
   mostplayed.forEach((id, i) => {
