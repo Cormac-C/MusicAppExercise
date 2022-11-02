@@ -35,18 +35,18 @@
 .song > .info > * {
   margin: 0;
 }
-.song > .actions {
+.actions > .delete-button {
   opacity: 0;
 }
 .song > .handle {
   cursor: grab;
   opacity: 0;
 }
-.song:hover > .actions,
+.song:hover > .actions > .delete-button,
 .song:hover > .handle {
   opacity: 1;
 }
 
-#search {
-
+.actions > * {
+  margin: 0 .5rem;
 }

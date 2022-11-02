@@ -109,7 +109,7 @@ class UsePlaylist {
     $("#playlist-title").val(this.playlist.title);
     const songs = this.playlist.songs;
     $("#play-playlist").click(function() {
-      player.setQueue(songs);
+      player.setQueue(songs); // function runs in the global scope
     });
     this.playlist.songs.forEach((id, i) => {
       $("#songs").append(this.songRender(id, i));
@@ -118,14 +118,13 @@ class UsePlaylist {
       $("#save-playlist").show();
     } else {
       $("#save-playlist").hide();
-
     }
     if (!this.editable) {
       $("#playlist-title").replaceWith(`<h2>${this.playlist.title}</h2>`);
       $("#search").hide();
       $("#save-playlist").hide();
       $("#delete-playlist").hide();
-      $(".actions").hide();
+      $(".delete-button").hide();
       $(".handle").hide();
     }
   }
@@ -146,28 +145,28 @@ class UsePlaylist {
           <h3>${title}</h3>
           <p>${artist}</p>
         </div>
-        <span
-          class="material-symbols-rounded"
-          onclick="player.addToQueue('${id}'); event.stopPropagation()"
-        >
-          queue_music
-        </span>
-        <img
-          src="images/heart-${
-            this.likedSongs.includes(id) ? "full" : "empty"
-          }.svg"
-          height="24px"
-          onclick="ctrl.likeSong('${id}'); event.stopPropagation()"
-          style="cursor: pointer"
-        />
-        <div class="actions">
-          <span 
-            class="material-symbols-rounded"
+        <span class="actions">
+          <span
+          class="delete-button material-symbols-rounded"
             onclick="ctrl.deleteSong(${index}); event.stopPropagation()"
           >
             delete
           </span>
-        </div>
+          <span
+            class="material-symbols-rounded"
+            onclick="player.addToQueue('${id}'); event.stopPropagation()"
+          >
+            queue_music
+          </span>
+          <img
+            src="images/heart-${
+              this.likedSongs.includes(id) ? "full" : "empty"
+            }.svg"
+            height="24px"
+            onclick="ctrl.likeSong('${id}'); event.stopPropagation()"
+            style="cursor: pointer"
+          />
+        </span>
       </div>
       `;
   }
