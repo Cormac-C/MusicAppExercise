@@ -222,7 +222,7 @@ class UsePlaylist {
       this.likedSongs.push(id);
     }
     localStorage.setItem("USER-LIKED-SONGS", JSON.stringify(this.likedSongs));
-    this.reset(); // Overkill, but easy
+    this.render();
   }
 
   deletePlaylist() {

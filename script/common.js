@@ -241,6 +241,7 @@ class PlayerController {
 
   addToQueue(id) {
     this.queue.push(id);
+    this.renderController();
   }
 
   playNextSong() {
