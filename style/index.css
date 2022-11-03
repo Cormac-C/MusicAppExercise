@@ -320,6 +320,12 @@ footer > #controls {
     flex-direction: column;
     padding: 0rem;
   }
+  .artistLabel {
+    width: 105px;
+    height: 105px;
+    padding: 10px;
+    cursor: pointer;
+  }
 }
 @media screen and (max-width: 450px) {
   .menuItem > h4 {
