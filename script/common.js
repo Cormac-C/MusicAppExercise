@@ -53,9 +53,14 @@ try {
     $("#sign-up-message").hide();
   } else {
     $("#header-search").hide();
+    $("#your-playlists").hide();
   }
 } catch (error) {
   console.log(error);
+}
+
+if (localStorage.getItem("USER-PLAYLISTS")) {
+  $("#no-playlists").hide();
 }
 
 if (!localStorage.getItem("songs")) {

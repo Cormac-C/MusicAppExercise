@@ -168,6 +168,14 @@ footer > #controls {
   grid-template-columns: repeat(auto-fit, 200px);
 }
 
+#no-playlists {
+  border-radius: 4px;
+  background: #dde6ef;
+  text-decoration: none;
+  color: black;
+  padding: 12px;
+}
+
 .artistLabel {
   width: 186px;
   height: 186px;
