@@ -2,12 +2,17 @@
   display: flex;
   align-items: center;
 }
-#playlist-title {
+#playlist-title, #playlist-title-editable {
   border: none;
+  margin: 0;
   font-size: 2rem;
   flex: 1;
 }
-#play-playlist, #save-playlist, #delete-playlist {
+#playlist-title-editable {
+  border-bottom: 1px solid lightgrey;
+}
+
+#play-playlist, #edit-playlist, #save-playlist, #delete-playlist {
   font-size: 2rem;
   margin: .5rem;
   cursor: pointer;
@@ -49,4 +54,19 @@
 
 .actions > * {
   margin: 0 .5rem;
+}
+
+#search > h3 {
+  margin-bottom: 0px;
+}
+#song-search {
+  border-radius: 4px;
+}
+#suggested-songs > p {
+  cursor: pointer;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 4px;
+  width: 50%;
+  min-width: max-content;
 }

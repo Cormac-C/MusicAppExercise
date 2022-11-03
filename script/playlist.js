@@ -7,8 +7,8 @@ class UsePlaylist {
     const urlParams = new URLSearchParams(window.location.search);
     this.ID = urlParams.get("ID");
     this.type = urlParams.get("type") ?? "user-playlist";
+    this.editing = false;
     this.editable = false;
-    this.edited = false;
     this.possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
     this.likedSongs = JSON.parse(
       localStorage.getItem("USER-LIKED-SONGS") ?? "[]"
@@ -75,7 +75,7 @@ class UsePlaylist {
   }
 
   handleDrag(ev) {
-    if (this.editable) {
+    if (this.editing) {
       ev.preventDefault();
       ev.dataTransfer.dropEffect = "move";
     }
@@ -92,21 +92,27 @@ class UsePlaylist {
     this.render();
   }
 
+  edit() {
+    if (this.editable) {
+      this.editing = true;
+      this.render();
+    }
+  }
+
   save() {
-    if (this.type === "user-playlist") {
+    if (this.editable) {
       let playlists = JSON.parse(
         localStorage.getItem("USER-PLAYLISTS") ?? "[]"
       );
       playlists.splice(this.ID, 1, this.playlist); // Replace playlist with a new one
       localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
-      this.edited = false;
+      this.editing = false;
       this.render();
     }
   }
 
   render() {
     $("#songs").html(""); // Reset song list
-    $("#playlist-title").val(this.playlist.title);
     const songs = this.playlist.songs;
     $("#play-playlist").click(function() {
       player.setQueue(songs, 0); // function runs in the global scope
@@ -114,18 +120,34 @@ class UsePlaylist {
     this.playlist.songs.forEach((id, i) => {
       $("#songs").append(this.songRender(id, i));
     });
-    if (this.edited) {
+    if (this.editing) {
+      $("#playlist-title-editable").val(this.playlist.title);
+      $("#playlist-title-editable").show();
       $("#save-playlist").show();
+      $("#edit-playlist").hide();
+      $("#playlist-title").hide();
+      $("#search").show();
     } else {
-      $("#save-playlist").hide();
-    }
-    if (!this.editable) {
-      $("#playlist-title").replaceWith(`<h2>${this.playlist.title}</h2>`);
+      if (this.editable) {
+        $("#edit-playlist").show();
+      } else {
+        $("#edit-playlist").hide();
+      }
+      $("#playlist-title").html(this.playlist.title);
+      $("#playlist-title").show();
+      $("#playlist-title-editable").hide();
       $("#search").hide();
       $("#save-playlist").hide();
       $("#delete-playlist").hide();
       $(".delete-button").hide();
       $(".handle").hide();
+      $("#save-playlist").hide();
+      $("#search").hide();
+    }
+    if (this.editable) {
+      $("#delete-playlist").show();
+    } else {
+      $("#delete-playlist").hide();
     }
   }
 
@@ -136,7 +158,7 @@ class UsePlaylist {
         <span 
           class="handle material-symbols-rounded"
           ondragstart="ctrl.handleDragStart(event, ${index})"
-          draggable="${this.editable}"
+          draggable="${this.editing}"
           onclick="event.stopPropagation()"
         >
           menu
@@ -171,10 +193,10 @@ class UsePlaylist {
       `;
   }
 
-  songSearch(event) {
+  songSearch(query) {
     $("#suggested-songs").html("");
-    const query = event.target.value;
     if (query !== "") {
+      this.query = query;
       // Find songs where the title matches that aren't in the playlist
       const songMatches = Object.entries(this.possibleSongs).filter(
         ([id, { title }]) =>
@@ -188,28 +210,29 @@ class UsePlaylist {
           `<p onclick="ctrl.addSong('${id}');">${title}: ${artist}</p>`
         );
       });
+      if (songMatches.length === 0) {
+        $("#suggested-songs").html("<h5>No songs were found :(</h5>")
+      } 
     }
   }
 
   changeTitle(event) {
-    if (this.editable) {
-      this.edited = true;
+    if (this.editing) {
       this.playlist.title = event.target.value;
       this.render();
     }
   }
 
   addSong(id) {
-    if (this.editable && !this.playlist.songs.includes(id)) {
-      this.edited = true;
+    if (this.editing && !this.playlist.songs.includes(id)) {
       this.playlist.songs.push(id);
+      this.songSearch(this.query);
       this.render();
     }
   }
 
   deleteSong(index) {
-    if (this.editable && index < this.playlist.songs.length) {
-      this.edited = true;
+    if (this.editing && index < this.playlist.songs.length) {
       this.playlist.songs.splice(index, 1);
       this.render();
     }
@@ -226,7 +249,7 @@ class UsePlaylist {
   }
 
   deletePlaylist() {
-    if (this.editable & confirm("Are you sure you wish to delete this playlist?")) {
+    if (confirm("Are you sure you wish to delete this playlist?")) {
       const playlists = JSON.parse(
         localStorage.getItem("USER-PLAYLISTS") ?? "[]"
       );
