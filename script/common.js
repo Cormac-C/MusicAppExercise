@@ -126,6 +126,10 @@ const upcomingReleases = [
 ];
 
 function renderReleases(releases) {
+  $("#releases").html("");
+  releases.forEach((release) => {
+    $("#releases").append(releaseRender(release));
+  });
   setInterval(
     function (releases) {
       $("#releases").html("");
@@ -133,7 +137,7 @@ function renderReleases(releases) {
         $("#releases").append(releaseRender(release));
       });
     },
-    1000,
+    60000,
     releases
   );
 }
@@ -150,10 +154,11 @@ function releaseRender(release) {
       .toString()
       .padStart(2, "0"),
     ds = Math.floor(timeDifference / 86400).toString();
-  const text = `${ds} Days ${hs}:${ms}:${ss}`;
+  const text = `${ds} Days, ${hs} Hours, ${ms} Minutes Until Release`;
   return `
     <p>
-      <strong>${release.title}</strong> - 
+      <strong>${release.title}</strong>
+      <br/>
       ${release.artist}
       <br/>
       ${text}
