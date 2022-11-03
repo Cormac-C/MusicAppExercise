@@ -55,38 +55,41 @@
           <h2>Account</h2>
         </span>
         <form onsubmit="return updateCookies(event)">
-          <label>
-            <strong>
-              Personal Information
-            </strong>
-          </label>
-          <br>
-          <label for="name">Name:</label><br>
-          <input id="name" type="text" name="name" required><br>
-          <label for="surname">Surname:</label><br>
-          <input id="surname" type="text" name="surname" required><br>
-          <label for="email">Email:</label><br>
-          <input id="email" type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
-          <label for="dob">Date of Birth:</label><br>
-          <input id="dob" type="date" name="dob" required><br>
-          <br> <br>
-          <label>
-            <strong>
-              Profile Picture (Optional)
-            </strong>
-          </label>
-          <br>
-          <label for="profilePic">Add a Profile Picture:</label>
-          <input 
-            type="file"
-            id="profilePic" 
-            name="profilePic"
-            accept="image/png, image/jpeg, image/jpg"
-          >
-          <br> <br>
-          <input type="reset" value="Delete">
-          <input type="submit" value="Save">
-          <!-- TODO input validation -->
+          <div class="formRow">
+            <div class="formCol">
+              <label for="name">Name:</label>
+              <input id="name" type="text" name="name" required>
+            </div>
+            <div class="formCol">
+              <label for="surname">Surname:</label>
+              <input id="surname" type="text" name="surname" required>
+            </div>
+          </div>
+          <div class="formRow">
+            <div class="formCol">
+              <label for="email">Email:</label>
+              <input id="email" type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+            </div>
+            <div class="formCol">
+              <label for="dob">Date of Birth:</label>
+              <input id="dob" type="date" name="dob" required>
+            </div>
+          </div>
+          <div class="formRow">
+            <div class="formCol">
+              <label for="profilePic">Add a Profile Picture:</label>
+              <input 
+                type="file"
+                id="profilePic" 
+                name="profilePic"
+                accept="image/png, image/jpeg, image/jpg"
+              >
+            </div>
+          </div>
+          <div class="formRow buttons">
+            <input class="reset" type="reset" value="Delete">
+            <input class="submit" type="submit" value="Save">
+          </div>
         </form>
       </div>
     </div>
