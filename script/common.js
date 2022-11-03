@@ -103,6 +103,30 @@ if (!localStorage.getItem("songs")) {
         album: "Yeezus",
         file: "Black Skinhead (Instrumental).mp3",
       },
+      {
+        title: "Ain't No Sunshine",
+        artist: "Bill Withers",
+        album: "Just As I Am",
+        file: "",
+      },
+      {
+        title: "Back To Black",
+        artist: "Amy Winehouse",
+        album: "Back to Black",
+        file: "",
+      },
+      {
+        title: "Crazy",
+        artist: "Gnarls Barkley",
+        album: "St. Elsewhere",
+        file: "",
+      },
+      {
+        title: "Jolene",
+        artist: "Dolly Parton",
+        album: "Jolene",
+        file: "",
+      },
     ])
   );
 }
@@ -277,14 +301,14 @@ class PlayerController {
   }
 
   volumeDown() {
-    const V = $('audio').prop("volume");
-    $('audio').prop("volume", Math.min(Math.max(0, V - 0.1), 1));
+    const V = $("audio").prop("volume");
+    $("audio").prop("volume", Math.min(Math.max(0, V - 0.1), 1));
     this.renderController();
   }
 
   volumeUp() {
-    const V = $('audio').prop("volume");
-    $('audio').prop("volume", Math.min(Math.max(0, V + 0.1), 1));
+    const V = $("audio").prop("volume");
+    $("audio").prop("volume", Math.min(Math.max(0, V + 0.1), 1));
     this.renderController();
   }
 
@@ -310,7 +334,7 @@ class PlayerController {
             volume_up
           </span>
           <p style="margin: 0 0 0 .5rem">
-            ${Math.round($("audio").prop("volume")*100)}/100
+            ${Math.round($("audio").prop("volume") * 100)}/100
           </p>
         </div>
       `);
