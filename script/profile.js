@@ -90,23 +90,25 @@ function songRender(id, index, liked) {
   const possibleSongs = JSON.parse(localStorage.getItem("songs") ?? "[]");
   const { artist, title } = possibleSongs[id];
   return `
-      <div id="${id}" class="song" onclick="player.setQueue(id)">
+      <div id="${id}" class="song" onclick="player.setQueue(['${id}'])">
         <div class="info">
           <h3>${title}</h3>
           <p>${artist}</p>
         </div>
-        <span
-          class="material-symbols-rounded"
-          onclick="player.addToQueue('${id}'); event.stopPropagation()"
-        >
-          queue_music
+        <span class="actions">
+          <span
+            class="material-symbols-rounded"
+            onclick="player.addToQueue('${id}'); event.stopPropagation()"
+          >
+            queue_music
+          </span>
+          <img
+            src="images/heart-${liked ? "full" : "empty"}.svg"
+            height="24px"
+            onclick="likeSong('${id}'); event.stopPropagation()"
+            style="cursor: pointer"
+          />
         </span>
-        <img
-          src="images/heart-${liked ? "full" : "empty"}.svg"
-          height="24px"
-          onclick="likeSong('${id}'); event.stopPropagation()"
-          style="cursor: pointer"
-        />
       </div>
     `;
 }

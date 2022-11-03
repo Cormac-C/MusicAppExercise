@@ -53,27 +53,29 @@ class Artist {
   songRender(id, index) {
     const { artist, title } = this.possibleSongs[id];
     return `
-      <div id="${id}" class="song" onclick="player.setQueue(ctrl.getSongList(${index}))">
+      <div id="${id}" class="song" onclick="player.setQueue(ctrl.getSongList(), ${index})">
         <div class="info">
           <h3>${title}</h3>
           <p>${artist}</p>
         </div>
-        <span
-          class="material-symbols-rounded"
-          onclick="player.addToQueue('${id}'); event.stopPropagation()"
-        >
-          queue_music
+        <span class="actions">
+          <span
+            class="material-symbols-rounded"
+            onclick="player.addToQueue('${id}'); event.stopPropagation()"
+          >
+            queue_music
+          </span>
+          <img
+            src="images/heart-${
+              this.likedSongs.includes(id) ? "full" : "empty"
+            }.svg"
+            height="24px"
+            onclick="ctrl.likeSong('${id}'); event.stopPropagation()"
+            style="cursor: pointer"
+          />
         </span>
-        <img
-          src="images/heart-${
-            this.likedSongs.includes(id) ? "full" : "empty"
-          }.svg"
-          height="24px"
-          onclick="ctrl.likeSong('${id}'); event.stopPropagation()"
-          style="cursor: pointer"
-        />
       </div>
-      `;
+    `;
   }
 
   albumRender(title, songs) {
