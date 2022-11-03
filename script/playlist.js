@@ -34,6 +34,7 @@ class UsePlaylist {
 
         if (this.playlist === undefined) {
           this.ID = playlists.length;
+          this.editing = true;
           this.playlist = {
             title: "New Playlist",
             cover: "album14.jpg",
@@ -107,6 +108,11 @@ class UsePlaylist {
       playlists.splice(this.ID, 1, this.playlist); // Replace playlist with a new one
       localStorage.setItem("USER-PLAYLISTS", JSON.stringify(playlists));
       this.editing = false;
+      // If this playlist is new, refresh the page to update the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("ID") === null) {
+        location.href = `playlist.html?type=user-playlist&ID=${this.ID}`;
+      }
       this.render();
     }
   }

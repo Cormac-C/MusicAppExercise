@@ -9,10 +9,6 @@
   font-family: sans-serif;
 }
 
-#footer {
-  height: 5vh;
-}
-
 .menu {
   display: flex;
   flex-direction: column;
@@ -49,28 +45,28 @@ header {
 }
 footer {
   position: fixed;
-  bottom: 0;
+  bottom: 8px;
   /* For centering the text */
   display: flex;
   width: 100%;
   justify-content: space-around;
 }
-footer > div {
+footer > #sign-up-message {
   width: max-content;
-  border: 1px solid rgb(121, 0, 0);
-  border-radius: 4px 4px 0 0;
-  padding: 4px;
   background-color: aliceblue;
-  cursor: pointer;
+  box-shadow: 2px 2px 2px #c9c9c9;
+  border-radius: 4px;
+  padding: 8px;
 }
 footer > #controls {
-  position: fixed;
-  bottom: 4px;
   height: min-content;
+  display: flex;
+  align-items: center;
   background: lightgrey;
   border-radius: 80px;
   border: none;
   padding: 2px 8px;
+  cursor: pointer;
 }
 
 .topButtons {

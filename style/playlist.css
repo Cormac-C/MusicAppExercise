@@ -47,6 +47,9 @@
   cursor: grab;
   opacity: 0;
 }
+.song:hover {
+  background: #e2ecf7;
+}
 .song:hover > .actions > .delete-button,
 .song:hover > .handle {
   opacity: 1;

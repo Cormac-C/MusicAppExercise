@@ -223,8 +223,7 @@ class PlayerController {
     this.queue = [];
     this.songIndex = undefined;
     this.playing = false;
-    $("#footer > audio").on("ended", () => this.playNextSong());
-    $("#footer > audio").on("timeupdate", () => this.updateStatus());
+    $("audio").on("ended", () => this.playNextSong());
     this.renderController();
   }
 
@@ -260,25 +259,34 @@ class PlayerController {
     this.updateAudio();
   }
 
-  updateStatus() {
-    // console.log($("#footer > audio"));
-  }
-
   togglePlayStatus(status = undefined) {
     if (this.queue.length) {
       this.playing = status ?? !this.playing;
     }
     if (this.playing) {
-      $("#footer > audio").trigger("play");
+      $("audio").trigger("play");
     } else {
-      $("#footer > audio").trigger("pause");
+      $("audio").trigger("pause");
     }
     this.renderController();
   }
 
+  volumeDown() {
+    const V = $('audio').prop("volume");
+    $('audio').prop("volume", Math.min(Math.max(0, V - 0.1), 1));
+    this.renderController();
+  }
+
+  volumeUp() {
+    const V = $('audio').prop("volume");
+    $('audio').prop("volume", Math.min(Math.max(0, V + 0.1), 1));
+    this.renderController();
+  }
+
   renderController() {
+    $("#controls").hide("");
     if (this.queue.length) {
-      $("#footer").append(`
+      $("#footer").html(`
         <div id="controls">
           <span class="material-symbols-rounded" onclick="player.playPreviousSong()">
             skip_previous
@@ -289,10 +297,18 @@ class PlayerController {
           <span class="material-symbols-rounded" onclick="player.playNextSong()">
             skip_next
           </span>
+          <div style="width: 1rem"></div>
+          <span class="material-symbols-rounded" onclick="player.volumeDown()">
+            volume_down
+          </span>
+          <span class="material-symbols-rounded" onclick="player.volumeUp()">
+            volume_up
+          </span>
+          <p style="margin: 0 0 0 .5rem">
+            ${Math.round($("audio").prop("volume")*100)}/100
+          </p>
         </div>
       `);
-    } else {
-      $("#controls").hide("");
     }
   }
 
@@ -300,7 +316,7 @@ class PlayerController {
     if (this.queue.length) {
       const id = this.queue[this.songIndex];
       const song = this.songs[id];
-      $("#footer > audio").replaceWith(`
+      $("audio").replaceWith(`
         <audio autoplay>
           <source src="images/${song.file}" type="audio/mpeg">
           Your browser does not support the audio element.
