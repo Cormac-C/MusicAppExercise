@@ -21,7 +21,7 @@
   background-color: aliceblue;
   box-shadow: 2px 2px 4px #9ab;
 }
-.rightCol {
+.centreColumn {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
@@ -268,14 +268,23 @@ footer > #controls {
 @media screen and (max-width: 768px) {
   .body {
     overflow-y: auto;
+    display: block;
     grid-template-columns: 1fr;
   }
-  .rightCol {
+  .centreColumn {
     overflow-y: auto;
+    max-height: none;
   }
   .menu {
     flex-direction: row;
     justify-content: space-between;
+    height: auto;
+  }
+  .rightColumn {
+    flex-direction: column;
+  }
+  .topBar {
+    height: 50px;
   }
   #spacer {
     flex: 0;
