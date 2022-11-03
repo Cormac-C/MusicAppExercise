@@ -25,11 +25,15 @@ let toggleDropdown = () => {
 try {
   if (localStorage.getItem("currentUser")) {
     const user = JSON.parse(localStorage.getItem("currentUser"));
+    const picture =
+      user.profilePic && typeof user.profilePic === "string"
+        ? user.profilePic
+        : "images/user.png";
     $("#topBar > button").hide();
     $("#topBar").append(
       [
         '<img id="pic" src="',
-        user.profilePic || "images/user.png",
+        picture,
         '" class=profilePic/>',
         "<button id='account'>",
         "Account",
