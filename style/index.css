@@ -157,7 +157,7 @@ footer > #controls {
 }
 
 .content {
-  padding: 1rem 1rem 4rem 4rem;
+  padding: 1rem 1rem 4rem 2rem;
   flex: 1;
   overflow-y: auto;
 }
@@ -301,12 +301,19 @@ footer > #controls {
 
 /* CSS for Phones */
 @media screen and (max-width: 600px) {
+  .content {
+    padding: 1rem;
+  }
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
   .imageLabel > img {
     width: 75px;
     height: 75px;
+  }
+  .artistLabel {
+    width: 100px;
+    height: 100px;
   }
   .appTitle,
   .links {

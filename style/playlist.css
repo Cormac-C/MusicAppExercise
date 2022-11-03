@@ -1,6 +1,7 @@
 .content-heading {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 #playlist-title, #playlist-title-editable {
   border: none;
@@ -9,6 +10,8 @@
   flex: 1;
 }
 #playlist-title-editable {
+  flex: 1;
+  max-width: calc(100% - 8rem);
   border-bottom: 1px solid lightgrey;
 }
 
