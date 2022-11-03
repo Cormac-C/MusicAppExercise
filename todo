@@ -77,5 +77,6 @@ Misc
 **************************
 ### Remaining Work
 1. User image error
-2. Index.html rework - D
-3. Check mobile and tablet responsiveness
+2. Check mobile and tablet responsiveness
+- Artist tile overlaps
+- Editing playlists overflow (& content padding)
