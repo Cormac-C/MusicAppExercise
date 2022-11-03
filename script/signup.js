@@ -1,7 +1,7 @@
 function encodeImage(userCookie, file) {
   var reader = new FileReader();
   reader.onloadend = function () {
-    userCookie["profilePic"] = reader.result;
+    userCookie["profilePic"] = reader.result.length > 5 ? reader.result : "";
     localStorage.setItem(userCookie.userName, JSON.stringify(userCookie));
     localStorage.setItem("currentUser", JSON.stringify(userCookie));
   };
@@ -19,6 +19,6 @@ function createCookie(event) {
     }
   }
   localStorage.setItem(userCookie.userName, JSON.stringify(userCookie));
-  location.href = "login.html";
+  location.href = "profile.html";
   return false;
 }
