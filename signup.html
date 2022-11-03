@@ -3,6 +3,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="script/common.js" defer></script>
     <script type="text/javascript" src="script/signup.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0" nonce="VsGH7AwT"></script>
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" type="text/css" href="style/index.css" />
@@ -54,77 +56,76 @@
         <span>
           <h2>Create Account</h2>
         </span>
-        <form onsubmit="return createCookie(event)">
-          <label>
-            <strong>
-              Login Information
-            </strong>
-          </label>
-          <br>
-          <label for="userName">Username:</label><br>
-          <input type="text" name="userName" required><br>
-          <label for="password">Password:</label><br>
-          <input type="text" name="password" maxlength=8 pattern="[a-z0-9]{1,8}" required><br>
-          <br> <br>
-          <label>
-            <strong>
-              Personal Information
-            </strong>
-          </label>
-          <br>
-          <label for="name">Name:</label><br>
-          <input type="text" name="name" required><br>
-          <label for="surname">Surname:</label><br>
-          <input type="text" name="surname" required><br>
-          <label for="email">Email:</label><br>
-          <input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
-          <label for="dob">Date of Birth:</label><br>
-          <input type="date" name="dob" required><br>
-          <br> <br>
-          <label>
-            <strong>
-              Profile Picture (Optional)
-            </strong>
-          </label>
-          <br>
-          <label for="profilePic">Add a Profile Picture:</label>
-          <input 
-            type="file"
-            id="profilePic" 
-            name="profilePic"
-            accept="image/png, image/jpeg"
-          >
-          <!-- TODO Add preview of uploaded pfp  -->
-          <br> <br>
-          <input type="checkbox" id="tAndC" name="tAndC" value="agree" required>
-          <label for="tAndC"> I have read and accepted the Terms of Use</label><br>
-          <br>
-          <input type="reset" value="Delete">
-          <input type="submit" value="Submit">
-          <!-- TODO input validation -->
+        <form class="signupForm" onsubmit="return createCookie(event)">
+          <div class="formRow">
+            <div class="formCol">
+              <label for="userName">Username:</label>
+              <input type="text" name="userName" required>
+            </div>
+            <div class="formCol">
+              <label for="password">Password:</label>
+              <input type="text" name="password" maxlength=8 pattern="[a-z0-9]{1,8}" required>
+            </div>
+          </div>
+          <div class="formRow">
+            <div class="formCol">
+              <label for="name">Name:</label>
+              <input type="text" name="name" required>
+            </div>
+            <div class="formCol">
+              <label for="surname">Surname:</label>
+              <input type="text" name="surname" required>
+            </div>
+          </div>
+          <div class="formRow">
+            <div class="formCol">
+              <label for="email">Email:</label>
+          <input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+            </div>
+            <div class="formCol">
+              <label for="dob">Date of Birth:</label>
+              <input type="date" name="dob" required>
+            </div>
+          </div>
+          <div class="formRow">
+            <div class="formCol">
+              <label for="profilePic">Add a Profile Picture:</label>
+              <input 
+                type="file"
+                id="profilePic" 
+                name="profilePic"
+                accept="image/png, image/jpeg"
+              >
+            </div>
+          </div>
+          <div class="formRow">
+            <input type="checkbox" id="tAndC" name="tAndC" value="agree" required>
+          <label for="tAndC"> I have read and accepted the Terms of Use</label>
+          </div>
+          <div class="formRow buttons">
+            <input class="reset" type="reset" value="Delete">
+            <input class="submit" type="submit" value="Submit">
+          </div>
         </form>
         <hr>
-        <!-- TODO add photos -->
-        <button>
-          Register with Facebook
-        </button>
-        <button>
-          Register with Google
-        </button>
-        <!-- - Form
-        - Username (Required) √
-        - Password (maximum? 8 characters. allowed characters: letters [a-z] and digits [0-9]) (Required) √
-        - Personal information √
-            - Name and Surname (Required)
-            - Email (will follow the format name@domain.extension) (Required)
-            - Date of birth (dd / mm / yyyy) (Required)
-        - Profile image (Optional) √
-        - I have read and accepted the Terms of Use (Required) √
-        - Save and delete buttons √
-        - Options to register with Facebook / Google (not functional)
-        - Clicking 'save' will store a cookie with all the information in the form
-        - If there is a cookie with the same email, notify the user an account exists with that email
-        - Appropriate error messages -->
+        <div id="fb-root" class="formRow">
+          <div class = "loginButton">
+            <div id="g_id_onload"
+              data-client_id="YOUR_GOOGLE_CLIENT_ID"
+              data-login_uri="https://your.domain/your_login_endpoint"
+              data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+              data-type="standard"
+              data-size="large"
+              data-theme="outline"
+              data-text="sign_in_with"
+              data-shape="rectangular"
+              data-logo_alignment="left">
+            </div>
+          </div>
+          <div class="fb-login-button loginButton" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        </div>
       </div>
     </div>
     <div class="menu">

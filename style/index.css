@@ -211,6 +211,59 @@ footer > #controls {
   position: absolute;
 }
 
+.formRow {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.formCol {
+  display: flex;
+  flex-direction: column;
+  margin-right: 8rem;
+}
+
+.formCol > input {
+  padding: 5px;
+}
+
+.buttons > input {
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-right: 2rem;
+  border-radius: 8px;
+}
+
+.reset {
+  background-color: white;
+  color: tomato;
+  border-color: tomato;
+}
+
+.reset:hover {
+  background-color: whitesmoke;
+}
+
+.submit {
+  background-color: green;
+  color: white;
+  border-color: white;
+}
+
+.submit:hover {
+  background-color: darkgreen;
+}
+
+.loginButton {
+  max-width: 30rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-right: 8rem;
+}
+
 /* CSS for Tablets */
 @media screen and (max-width: 768px) {
   .body {
