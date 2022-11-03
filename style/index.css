@@ -304,6 +304,14 @@ footer > #controls {
   .links {
     display: none;
   }
+  .formCol {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .formRow {
+    flex-direction: column;
+    padding: 0rem;
+  }
 }
 @media screen and (max-width: 450px) {
   .menuItem > h4 {
